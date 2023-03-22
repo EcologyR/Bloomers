@@ -7,9 +7,7 @@ Authors@R:
            comment = c(ORCID = "0000-0003-1653-6523")),
     person("Irene", "Mendoza", , role = "aut", comment = c(ORCID = "0000-0002-3288-6366"))
   )
-Description: This package is created to identify bloomers in microbial communities 
-from datasets with temporal or spatial scales. Bloomers are microorganisms that dominate
-the community in a localized environment for a short period of time. 
+Description: This package is created to identify bloomers in microbial communities from datasets with temporal or spatial scales. Bloomers are microorganisms that dominate the community in a localized environment for a short period of time. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
