@@ -9,7 +9,7 @@ Authors@R:
   )
 Description: This package is created to identify bloomers in microbial communities 
 from datasets with temporal or spatial scales. Bloomers are microorganisms that dominate
-the communities in a specific moment for a short period of time.
+the community in a localized environment for a short period of time. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
