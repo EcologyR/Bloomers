@@ -21,11 +21,11 @@ The goal of templateRpackage is to …
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("EcologyR/Bloomers")
+devtools::install_github("EcologyR/templateRpackage")
 ```
 
 The code to create this package is available
-[here](https://github.com/EcologyR/Bloomers).
+[here](https://gist.github.com/Pakillo/999e34301c56011138ef164363502465).
 
 ## Example
 
