@@ -1,10 +1,10 @@
-Package: BloomersPackage
-Title: Identify potential bloomers in microbial communities
+Package: Bloomers
+Title: Identify Potential Bloomers In Microbial Communities
 Version: 0.0.0.9000
 Authors@R: 
   c(
-    person("Francisco", "Rodriguez-Sanchez", , "f.rodriguez.sanc@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-7981-1599")),
+    person("Ona", "Deulofeu-Capo", , "ona.deulofeu@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-1653-6523")),
     person("Irene", "Mendoza", , role = "aut", comment = c(ORCID = "0000-0002-3288-6366"))
   )
 Description: This package is created to identify bloomers in microbial communities 
