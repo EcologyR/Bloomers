@@ -21,6 +21,6 @@ dataset simulated
 exampledata
 }
 \description{
-This is just an example dataset
+This is just an example dataset and here it is its description
 }
 \keyword{datasets}
