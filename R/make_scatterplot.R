@@ -12,6 +12,7 @@
 #' @export
 #'
 #' @import ggplot2
+#' #rdiff for testing differences among plots
 #'
 #' @examples
 #' data("exampledata")
