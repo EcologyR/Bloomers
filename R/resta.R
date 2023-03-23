@@ -18,7 +18,7 @@
 
 resta <- function(x = NULL, y = NULL, warn.negative = FALSE) {
 
-  ## Check arguments
+  ## Check arguments (defending programming)
 
   stopifnot(is.numeric(x), is.numeric(y))
 
