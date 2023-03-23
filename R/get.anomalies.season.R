@@ -54,5 +54,6 @@ get.anomalies <- function(abundance = NULL,
       lines(abundance ~ time)
     }
   }
+  return(z)
 }
 
