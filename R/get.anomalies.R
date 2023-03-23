@@ -14,7 +14,7 @@
 #' @examples
 #' abundance <- runif(16, 0, 2000)
 #' abundance[10] <- 20000
-#' get.anomalies(abundance, time_stamp, time_lag)
+#' get.anomalies(abundance, time_lag)
 #' @author I. Bartomeus
 #'
 get.anomalies <- function(abundance = NULL,
@@ -44,8 +44,8 @@ get.anomalies <- function(abundance = NULL,
     color_ <- ifelse(is.na(z), "white", color_)
     pch_ <- ifelse(z > 1.5, 19, 1)
     time <- 1:length(abundance)
-    plot(abundance ~ time_stamp, t = "b",
+    plot(abundance ~ time, t = "b",
          col = color_, pch = pch_, las = 1, xlab = "time")
-    lines(abundance ~ time_stamp)
+    lines(abundance ~ time)
   }
 }
