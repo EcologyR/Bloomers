@@ -1,6 +1,6 @@
 #' Example dataset
 #'
-#' This is just an example dataset
+#' This is just an example dataset and here it is its description
 #'
 #' @format ## `exampledata`
 #' A data frame with 30 rows and 2 columns:
