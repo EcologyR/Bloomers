@@ -16,7 +16,7 @@ relative.abundance <- function(data, groups){
   new_data <- data %>%
     group_by(Sample_id_ed, filter) %>%
     mutate(total_reads = sum(reads)) %>%
-    mutate(realative_abundance = reads/total_reads)
+    mutate(relative_abundance = reads/total_reads)
   return(new_data)
 }
 
