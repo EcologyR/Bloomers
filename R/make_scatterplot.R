@@ -1,5 +1,3 @@
-#' Make a scatterplot of two numeric variables
-#'
 #' Make a scatterplot of two numeric variables using [ggplot2::ggplot()].
 #'
 #' @param var1 Numeric vector
@@ -12,7 +10,6 @@
 #' @export
 #'
 #' @import ggplot2
-#' #rdiff for testing differences among plots
 #'
 #' @examples
 #' data("exampledata")

@@ -11,7 +11,7 @@
 #' multipy_by(2)
 #' multiply_by(2,100)
 
-multiyply_by <- function(x = Null, y = 10){
+multiply_by <- function(x = Null, y = 10){
 
   ## Check arguments (defending programming)
 
