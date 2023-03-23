@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_scatterplot.R
 \name{make_scatterplot}
 \alias{make_scatterplot}
-\title{Make a scatterplot of two numeric variables}
+\title{Make a scatterplot of two numeric variables using \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.}
 \usage{
 make_scatterplot(var1 = NULL, var2 = NULL, ...)
 }
