@@ -15,10 +15,10 @@
 #' abundance <- runif(16, 0, 2000)
 #' abundance[10] <- 20000
 #' season <- rep(c("march", "april", "may", "june"), 4)
-#' get.anomalies(abundance, season)
+#' get.anomalies.season(abundance, season)
 #' @author I. Bartomeus
 #'
-get.anomalies <- function(abundance = NULL,
+get.anomalies.season <- function(abundance = NULL,
                           season = NULL,
                           compare_season = "all",
                           plotting = TRUE){
