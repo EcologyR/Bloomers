@@ -5,7 +5,7 @@
 #'
 #' @param abundance a vector of abundance per sampling period (numeric)
 #' @param season a vector of when (season) each sample was collected
-#' @param compare_season The season to compare,
+#' @param compare_season The season to compare, by default "all"
 #' @param plotting should we plot the time series? Default to TRUE
 #'
 #' @return
@@ -15,10 +15,10 @@
 #' abundance <- runif(16, 0, 2000)
 #' abundance[10] <- 20000
 #' season <- rep(c("march", "april", "may", "june"), 4)
-#' get.anomalies.season(abundance, season)
+#' get_anomalies_season(abundance, season)
 #' @author I. Bartomeus
 #'
-get.anomalies.season <- function(abundance = NULL,
+get_anomalies_season <- function(abundance = NULL,
                           season = NULL,
                           compare_season = "all",
                           plotting = TRUE){
@@ -26,19 +26,21 @@ get.anomalies.season <- function(abundance = NULL,
   #test abundance is numeric
   stopifnot(is.numeric(abundance))
 
-  #abundance must be a non-null vector
-  stopifnot(is.null(abundance))
+  #abundance must be a non-zero vector
+  stopifnot(length(abundance)< length(season) + 1)
 
   #crate a dataframe
   d <- data.frame(id = 1:length(abundance), abundance, season)
+
   if(compare_season == "all"){ #so far only all implemented. should we allow selecting only one season?
     #loop through seasons
     u_season <- unique(season)
     seasons <- data.frame(season = u_season,
                           x_abundance_season = rep(NA, length(u_season)),
                           sd_abundance_season = rep(NA, length(u_season)))
+
     for(i in 1:length(u_season)){
-      #calculate for each season, the mean and ds abundance.
+      #calculate for each season, the mean and sd of abundance.
       seasons$x_abundance_season[i] <- mean(d$abundance[which(d$season == u_season[i])])
       seasons$sd_abundance_season[i] <- sd(d$abundance[which(d$season == u_season[i])])
     }
