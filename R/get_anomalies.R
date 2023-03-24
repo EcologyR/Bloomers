@@ -38,7 +38,7 @@ get_anomalies <- function(abundance = NULL,
     xt[i] <- mean(abundance[(i - time_lag):i])
     sdt[i] <- sd(abundance[(i - time_lag):i])
     #and calculate the z-score for this moving window.
-    z[i] <- (abundance[i] - xt[i]) / sdt[i]
+    z[i] <- round((abundance[i] - xt[i]) / sdt[i],3)
   }
   #z <- ifelse(z = Inf, NA, z) # would Inf's be problematic?
   if (plotting) {
