@@ -5,7 +5,7 @@
 #'
 #' @param abundance a vector of abundance per sampling period (numeric)
 #' @param season a vector of when (season) each sample was collected
-#' @param season The season to compare
+#' @param compare_season The season to compare
 #' @param plotting should we plot the time series? Default to TRUE
 #'
 #' @return
