@@ -19,7 +19,22 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/Bloomers-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/calculate_pseudoabund.html</loc>
+  </url>
+  <url>
+    <loc>/reference/calculate_rel_abund.html</loc>
+  </url>
+  <url>
     <loc>/reference/exampledata.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_anomalies.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_anomalies_season.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
