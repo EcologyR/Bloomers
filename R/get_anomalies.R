@@ -17,7 +17,7 @@
 #' get.anomalies(abundance, time_lag)
 #' @author I. Bartomeus
 #'
-get.anomalies <- function(abundance = NULL,
+get_anomalies <- function(abundance = NULL,
                           time_lag = 4,
                           plotting = TRUE){
   #test abundance is numeric
