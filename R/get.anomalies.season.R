@@ -5,7 +5,7 @@
 #'
 #' @param abundance a vector of abundance per sampling period (numeric)
 #' @param season a vector of when (season) each sample was collected
-#' @param compare_season The season to compare
+#' @param compare_season The season to compare,
 #' @param plotting should we plot the time series? Default to TRUE
 #'
 #' @return
@@ -22,11 +22,16 @@ get.anomalies.season <- function(abundance = NULL,
                           season = NULL,
                           compare_season = "all",
                           plotting = TRUE){
+
   #test abundance is numeric
   stopifnot(is.numeric(abundance))
-  #crate a dtaframe
+
+  #abundance must be a non-null vector
+  stopifnot(is.null(abundance))
+
+  #crate a dataframe
   d <- data.frame(id = 1:length(abundance), abundance, season)
-  if(compare_season == "all"){ #so far only all implmented. should we allow selecting only one season?
+  if(compare_season == "all"){ #so far only all implemented. should we allow selecting only one season?
     #loop through seasons
     u_season <- unique(season)
     seasons <- data.frame(season = u_season,
@@ -39,6 +44,7 @@ get.anomalies.season <- function(abundance = NULL,
     }
     d2 <- merge(d, seasons, by = "season", all.x = TRUE)
     d2 <- d2[order(d2$id),]
+
     #calculate z-value
     z <- rep(NA, length(abundance))
     for(j in d2$id){
