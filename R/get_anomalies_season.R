@@ -19,46 +19,59 @@
 #' @author I. Bartomeus
 #'
 get_anomalies_season <- function(abundance = NULL,
-                          season = NULL,
-                          compare_season = "all",
-                          plotting = TRUE){
-
+                                 season = NULL,
+                                 compare_season = "all",
+                                 plotting = TRUE) {
   #test abundance is numeric
   stopifnot(is.numeric(abundance))
 
   #abundance must be a non-zero vector
-  stopifnot(length(abundance)< length(season) + 1)
+  stopifnot(length(abundance) < length(season) + 1)
 
   #crate a dataframe
   d <- data.frame(id = 1:length(abundance), abundance, season)
 
-  if(compare_season == "all"){ #so far only all implemented. should we allow selecting only one season?
+  if (compare_season == "all") {
+    #so far only all implemented. should we allow selecting only one season?
     #loop through seasons
     u_season <- unique(season)
-    seasons <- data.frame(season = u_season,
-                          x_abundance_season = rep(NA, length(u_season)),
-                          sd_abundance_season = rep(NA, length(u_season)))
+    seasons <- data.frame(
+      season = u_season,
+      x_abundance_season = rep(NA, length(u_season)),
+      sd_abundance_season = rep(NA, length(u_season))
+    )
 
-    for(i in 1:length(u_season)){
+    for (i in 1:length(u_season)) {
       #calculate for each season, the mean and sd of abundance.
-      seasons$x_abundance_season[i] <- mean(d$abundance[which(d$season == u_season[i])])
-      seasons$sd_abundance_season[i] <- sd(d$abundance[which(d$season == u_season[i])])
+      seasons$x_abundance_season[i] <-
+        mean(d$abundance[which(d$season == u_season[i])])
+      seasons$sd_abundance_season[i] <-
+        sd(d$abundance[which(d$season == u_season[i])])
     }
     d2 <- merge(d, seasons, by = "season", all.x = TRUE)
-    d2 <- d2[order(d2$id),]
+    d2 <- d2[order(d2$id), ]
 
     #calculate z-value
     z <- rep(NA, length(abundance))
-    for(j in d2$id){
-      z[j] <- (d2$abundance[j] - d2$x_abundance_season[j]) / d2$sd_abundance_season[j]
+    for (j in d2$id) {
+      z[j] <-
+        (d2$abundance[j] - d2$x_abundance_season[j]) / d2$sd_abundance_season[j]
     }
     #z <- ifelse(z = Inf, NA, z) # would Inf's be problematic?
-    if(plotting){
-      color_ <- rep(1:length(u_season), length(abundance)/length(u_season)) #This will FAIL if years are not complete. FIX
+    if (plotting) {
+      color_ <-
+        rep(1:length(u_season),
+            length(abundance) / length(u_season)) #This will FAIL if years are not complete. FIX
       pch_ <- ifelse(z > 1.5, 19, 1)
       time <- 1:length(abundance)
-      plot(abundance ~ time, t = "b",
-             col = color_, pch = pch_, las = 1, xlab = "time")
+      plot(
+        abundance ~ time,
+        t = "b",
+        col = color_,
+        pch = pch_,
+        las = 1,
+        xlab = "time"
+      )
       lines(abundance ~ time)
     }
   }
