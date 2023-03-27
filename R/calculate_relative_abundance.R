@@ -8,10 +8,10 @@
 #' @export
 #'
 #' @examples
-calculate_rel_abund <- function(data, groups){
+calculate_rel_abund <- function(data, group_cols){
   ##check col sums = 1
   new_data <- data %>%
-    group_by(Sample_id_ed, filter) %>%
+    group_by(group_cols) %>%
     mutate(total_reads = sum(reads)) %>%
     mutate(relative_abundance = reads/total_reads)
   return(new_data)
