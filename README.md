@@ -80,4 +80,4 @@ Desarrollo Regional (FEDER) and Consejería de Transformación Económica,
 Industria, Conocimiento y Universidades of Junta de Andalucía (proyecto
 US-1381388 led by Francisco Rodríguez Sánchez, Universidad de Sevilla).
 
-![](https://ecologyr.github.io/workshop/images/logos.png)
+![](https://github.com/EcologyR/Bloomers/blob/master/inst/ICM-logotip.jpg)

@@ -5,7 +5,8 @@ Authors@R:
   c(
     person("Ona", "Deulofeu-Capo", , "ona.deulofeu@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1653-6523")),
-    person("Irene", "Mendoza", , role = "aut", comment = c(ORCID = "0000-0002-3288-6366"))
+    person("Irene", "Mendoza", , role = "aut", comment = c(ORCID = "0000-0002-3288-6366")),
+    person("Ignasi", "Bartomeus", , role = "aut", comment = c(ORCID = "0000-0001-7893-4389"))
   )
 Description: This package is created to identify bloomers in microbial communities from datasets with temporal or spatial scales. Bloomers are microorganisms that dominate the community in a localized environment for a short period of time. 
 License: MIT + file LICENSE

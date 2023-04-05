@@ -1,4 +1,4 @@
-#' get.anomalies.season
+#' get_anomalies_season
 #'
 #' @description A function to calculate anomalies across seasons in a time series by calculating
 #' z-values with respect to past seasons.
