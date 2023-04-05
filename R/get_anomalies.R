@@ -18,9 +18,18 @@
 #' @author I. Bartomeus
 #'
 get_anomalies <- function(abundance = NULL,
+get_anomalies <- function(data = NULL,
+    abundance_col = NULL,
                           time_lag = 4,
                           plotting = TRUE) {
   #test abundance is numeric
+
+    abundance <- data[[which(colnames(data) == abundance_col)]]
+    # Rest of the function code that calculates anomalies using the `abundance` vector
+
+
+  abundance <- data[[abundance_col]]
+
   stopifnot(is.numeric(abundance))
 
   #test time_lag is a single value
