@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 <!-- `r badger::badge_codefactor("ecologyr/templaterpackage")` -->
 <!-- badges: end -->
 
-The goal of templateRpackage is to ...
+The main objective of Bloomers package is to detect sharp changes in abundances from microbial communities.
 
 ## Installation
 
@@ -33,6 +33,8 @@ devtools::install_github("EcologyR/Bloomers")
 ```
 
 The code to create this package is available [here](https://github.com/EcologyR/Bloomers).
+
+##The workflow of the bloomers package is summarized in the following graph
 
 
 ## Example
