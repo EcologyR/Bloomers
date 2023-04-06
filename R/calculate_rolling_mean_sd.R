@@ -17,7 +17,7 @@
 #' group_var = asv_num,
 #' group_size = 3)
 #'
-mean_and_sd_for_group_tidy <- function(df, abundance_column, group_var, group_size) {
+rolling_mean_and_sd <- function(df, abundance_column, group_var, group_size) {
   require(tidyverse)
   require(slider)
 
