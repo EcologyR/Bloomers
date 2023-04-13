@@ -15,7 +15,8 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 <!-- [![CodeFactor](https://www.codefactor.io/repository/github/ecologyr/templaterpackage/badge)](https://www.codefactor.io/repository/github/ecologyr/templaterpackage) -->
 <!-- badges: end -->
 
-The goal of templateRpackage is to …
+The main objective of Bloomers package is to detect sharp changes in
+abundances for individual taxa in microbial communities.
 
 ## Installation
 
@@ -26,6 +27,11 @@ devtools::install_github("EcologyR/Bloomers")
 
 The code to create this package is available
 [here](https://github.com/EcologyR/Bloomers).
+
+\##The workflow of the bloomers package is summarized in the following
+graph
+
+\#![](logos/scheme/shceme_bloomers_pk.png)
 
 ## Example
 
@@ -80,4 +86,4 @@ Desarrollo Regional (FEDER) and Consejería de Transformación Económica,
 Industria, Conocimiento y Universidades of Junta de Andalucía (proyecto
 US-1381388 led by Francisco Rodríguez Sánchez, Universidad de Sevilla).
 
-![](https://github.com/EcologyR/Bloomers/blob/master/inst/ICM-logotip.jpg)
+\#![](https://github.com/EcologyR/Bloomers/blob/master/inst/ICM-logotip.jpg)

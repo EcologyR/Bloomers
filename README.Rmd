@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 <!-- `r badger::badge_codefactor("ecologyr/templaterpackage")` -->
 <!-- badges: end -->
 
-The main objective of Bloomers package is to detect sharp changes in abundances from microbial communities.
+The main objective of Bloomers package is to detect sharp changes in abundances for individual taxa in microbial communities.
 
 ## Installation
 
@@ -36,6 +36,7 @@ The code to create this package is available [here](https://github.com/EcologyR/
 
 ##The workflow of the bloomers package is summarized in the following graph
 
+#![](logos/scheme/shceme_bloomers_pk.png)
 
 ## Example
 
