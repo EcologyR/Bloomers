@@ -38,8 +38,15 @@ graph
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-# library(templateRpackage)
+# library(Bloomers)
 ## basic example code
+
+#create a vector of random abundances
+abundance <- runif(16, 0, 2000)
+#create an anomaly
+abundance[10] <- 4000
+#test it
+get_anomalies(abundance, time_lag)
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?

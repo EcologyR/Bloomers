@@ -18,6 +18,7 @@
 #' get_anomalies_season(abundance, season)
 #' @author I. Bartomeus
 #'
+# FUNCTION NOT UPDATED AFTER ENHANCING get_anomalies.R
 get_anomalies_season <- function(abundance = NULL,
                                  season = NULL,
                                  compare_season = "all",
