@@ -5,9 +5,15 @@ source('R/calculate_pseudoabund.R')
 source('R/general_max_sd_abundance.R')
 source("R/calculate_rolling_mean_sd.R")
 source('R/find_ASVs_high_abund_changes.R')
+source('R/compute_bray_curtis_dissimilariy.R')
+source('R/evenness_community.R')
+
+source('R/get_anomalies.R')
 
 library(tidyverse)
 library(vegan)
+
+
 
 # PREPROCESSING -----
 # get example data
@@ -104,10 +110,6 @@ bray_curtis_results %>%
   theme_bw()+
   theme(panel.grid.minor = element_blank(), panel.grid.major = element_blank())
 
-
-
-
-
 #create a vector with sample names to not lose them
 # sample_id <- asv_tab_l_rel_abund %>%
 #   group_by(sample_id) %>%
@@ -170,3 +172,58 @@ asv_tab_pseudoabund_split$asv1 %>%
 
 
 ## calculate changes in relative abundances
+
+## blooming event duration
+asv1 <- asv_tab_pseudoabund %>%
+  subset(asv_num == 'asv1')
+
+#library(magrittr)
+
+asv1 %>%
+  select(asv_num, relative_abundance) %>%
+  dplyr::mutate(row_index := row_number()) %>%
+  dplyr::filter(row_index >= 4) %>% #anomaly in point 4
+  dplyr::mutate(mantaining_bloom = case_when(between(relative_abundance, 0.052-0.015, 0.052+0.045) ~ 'TRUE',
+                                           #relative_abundance <  ~ 'TRUE',
+                                           .default  = 'FALSE')) %>%
+  dplyr::mutate(consecutive_bloom = case_when(mantaining_bloom == 'TRUE' ~ 1,
+                                              mantaining_bloom == 'FALSE' ~ 0)) %>%
+  dplyr::mutate(mantainance = case_when(lag(consecutive_bloom, 1) != 0 ~ sum(lag(consecutive_bloom, 3)),
+                                        lag(consecutive_bloom, 1) == 0 ~ 'FALSE'))
+
+    sum(lag(consecutive_bloom)))
+
+# %$%
+#   mantaining_bloom %$%
+#   is.logical() %>%
+#   summary()['TRUE']
+
+asv1 %>%
+  select(asv_num, relative_abundance) %>%
+  dplyr::mutate(row_index := row_number()) %>%
+  dplyr::filter(row_index == 4) %>%
+  select(relative_abundance) %>%
+  as.numeric()
+
+##input dataframe a subset for each ASV
+blooming_mantainence <- function(data, anomaly_point, relative_abundance,  range){
+  relative_abundance_anomaly <- data %>%
+    dplyr::mutate(row_index := row_number()) %>%
+    dplyr::filter(row_index == anomaly_point) %>%
+    select(relative_abundance) %>%
+    as.numeric()
+
+  data_blooming_maintained  <- data %>%
+    dplyr::mutate(row_index := row_number()) %>%
+    dplyr::filter(row_index >= anomaly_point) %>%
+    dplyr::mutate(mantaining_bloom = case_when(between(relative_abundance, relative_abundance_anomaly-range, relative_abundance_anomaly+range) ~ 'TRUE',
+                                               #relative_abundance <  ~ 'TRUE',
+                                               .default  = 'FALSE'))
+return(data_blooming_maintained)
+}
+
+asv_tab_pseudoabund %>%
+  group_by(asv_num) %>%
+  #select(asv_num, relative_abundance) %>%
+blooming_mantainence(anomaly_point = 4, relative_abundance = relative_abundance, range = 0.02)
+
