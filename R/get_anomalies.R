@@ -18,23 +18,16 @@
 #' @author I. Bartomeus
 #'
 get_anomalies <- function(abundance = NULL,
-get_anomalies <- function(data = NULL,
-    abundance_col = NULL,
+                          #abundance_col = NULL,
                           time_lag = 4,
                           plotting = TRUE) {
   #test abundance is numeric
-
-    abundance <- data[[which(colnames(data) == abundance_col)]]
-    # Rest of the function code that calculates anomalies using the `abundance` vector
-
-
-  abundance <- data[[abundance_col]]
-
+  #abundance <- data[[which(colnames(data) == abundance_col)]]
+  # Rest of the function code that calculates anomalies using the `abundance` vector
+  #abundance <- data[[abundance_col]]
   stopifnot(is.numeric(abundance))
-
   #test time_lag is a single value
   stopifnot(length(time_lag) == 1)
-  stopifnot(is.numeric(abundance))
 
   #calculate for each element, the mean and ds abundance for the previous time lag
   xt <- rep(NA, length(abundance))
@@ -44,8 +37,8 @@ get_anomalies <- function(data = NULL,
   z <- rep(NA, length(abundance))
   z[1:time_lag] <- NA
   for (i in (1 + time_lag):length(abundance)) {
-    xt[i] <- mean(abundance[(i - time_lag):i])
-    sdt[i] <- sd(abundance[(i - time_lag):i])
+    xt[i] <- mean(abundance[(i - time_lag):(i-1)])
+    sdt[i] <- sd(abundance[(i - time_lag):(i-1)])
     #and calculate the z-score for this moving window.
     z[i] <- round((abundance[i] - xt[i]) / sdt[i],3)
   }
