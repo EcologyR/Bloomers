@@ -81,9 +81,6 @@ If using this package, please cite it:
 
 ## Funding
 
-The development of this software has been funded by Fondo Europeo de
-Desarrollo Regional (FEDER) and Consejería de Transformación Económica,
-Industria, Conocimiento y Universidades of Junta de Andalucía (proyecto
-US-1381388 led by Francisco Rodríguez Sánchez, Universidad de Sevilla).
+Funding comes from the Institut de Ciencies del Mar-CSIC
 
 \#![](https://github.com/EcologyR/Bloomers/blob/master/inst/ICM-logotip.jpg)
