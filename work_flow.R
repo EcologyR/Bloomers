@@ -9,21 +9,24 @@ source('R/find_ASVs_high_abund_changes.R')
 library(tidyverse)
 library(vegan)
 
-# PREPROCESSING -----
+### PREPROCESSING ###
 # get example data
 data <- prepare_example_data()
+str(data)
 
 # calculate relative abundances
 asv_tab_l_rel_abund <- data$asv_tab_l %>%
   calculate_rel_abund(group_cols = sample_id)
+str(asv_tab_l_rel_abund)
 
 # calculate pseudoabundandances
 asv_tab_pseudoabund <- asv_tab_l_rel_abund %>%
   calculate_pseudoabund(abund_data = data$abund_data,  by_ =  c('sample_id', 'sampling_site'),
                         rel_abund = as.numeric(relative_abundance),
                         total_abund = as.numeric(mean_total_bac))
+str(asv_tab_pseudoabund)
 
-# IDENTIFICATION -----
+### IDENTIFICATION ###
 # Calculate the general maximum sd for the dataset and return the highest, to have an idea of which are the changes
 # in relative abundances for our datset
 general_max_sd_abundance(asv_tab_pseudoabund, group_var = asv_num, abundance_col = pseudoabundance, x = 5)
