@@ -14,54 +14,52 @@
 #' @examples
 #' abundance <- runif(16, 0, 2000)
 #' abundance[10] <- 20000
-#' get_anomalies(abundance, time_lag)
+#' get_anomalies(values = abundance, time_lag)
 #' @author I. Bartomeus
 #'
-get_anomalies <- function(abundance = NULL,
-                          #abundance_col = NULL,
+get_anomalies <- function(values = NULL,
                           time_lag = 4,
+                          cutoff = 1.96,
                           plotting = TRUE) {
-  #test abundance is numeric
-  #abundance <- data[[which(colnames(data) == abundance_col)]]
-  # Rest of the function code that calculates anomalies using the `abundance` vector
-  #abundance <- data[[abundance_col]]
-  stopifnot(is.numeric(abundance))
+  #test values is numeric
+  # Rest of the function code that calculates anomalies using the `values` vector
+  stopifnot(is.numeric(values))
   #test time_lag is a single value
   stopifnot(length(time_lag) == 1)
 
-  #calculate for each element, the mean and ds abundance for the previous time lag
-  xt <- rep(NA, length(abundance))
+  #calculate for each element, the mean and ds values for the previous time lag
+  xt <- rep(NA, length(values))
   xt[1:time_lag] <- NA
-  sdt <- rep(NA, length(abundance))
+  sdt <- rep(NA, length(values))
   sdt[1:time_lag] <- NA
-  z <- rep(NA, length(abundance))
+  z <- rep(NA, length(values))
   z[1:time_lag] <- NA
-  for (i in (1 + time_lag):length(abundance)) {
-    xt[i] <- mean(abundance[(i - time_lag):(i-1)])
-    sdt[i] <- sd(abundance[(i - time_lag):(i-1)])
+  for (i in (1 + time_lag):length(values)) {
+    xt[i] <- mean(values[(i - time_lag):(i-1)])
+    sdt[i] <- sd(values[(i - time_lag):(i-1)])
     #and calculate the z-score for this moving window.
-    z[i] <- round((abundance[i] - xt[i]) / sdt[i],3)
+    z[i] <- round((values[i] - xt[i]) / sdt[i],3)
   }
-  if(any(z > 1.96)){ #SHOULD WE MAKE THE LIMIT CUSTOMIZABLE AS A PARAM?
+  if(any(z > cutoff, na.rm = TRUE)){
     anomaly <- "anomaly_detected"
   } else {
     anomaly <- "no_anomalies"
   }
   #z <- ifelse(z = Inf, NA, z) # would Inf's be problematic?
   if (plotting) {
-    color_ <- ifelse(abs(z) > 1.96, "red", "black")
+    color_ <- ifelse(abs(z) > cutoff, "red", "black")
     color_ <- ifelse(is.na(z), "white", color_)
-    pch_ <- ifelse(z > 1.96, 19, 1)
-    time <- 1:length(abundance)
+    pch_ <- ifelse(z > cutoff, 19, 1)
+    time <- 1:length(values)
     plot(
-      abundance ~ time,
+      values ~ time,
       t = "b",
       col = color_,
       pch = pch_,
       las = 1,
       xlab = "time"
     )
-    lines(abundance ~ time)
+    lines(values ~ time)
   }
   return(list(anomaly = anomaly, time_points = z))
 }
