@@ -1,3 +1,10 @@
+# Shannon-Wiener index function
+shannon_index <- function(abundances) {
+  n <- sum(abundances)
+  pi <- abundances / n
+  -sum(pi * log(pi))
+}
+
 # Community evenness function with options for Shannon or Simpson index
 community_evenness <- function(abundances, index = "shannon") {
   if (index == "shannon") {
