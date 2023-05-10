@@ -9,7 +9,7 @@ source('R/find_ASVs_high_abund_changes.R')
 library(tidyverse)
 library(vegan)
 
-### PREPROCESSING ###
+# PREPROCESSING -----
 # get example data
 data <- prepare_example_data()
 str(data)
@@ -26,7 +26,7 @@ asv_tab_pseudoabund <- asv_tab_l_rel_abund %>%
                         total_abund = as.numeric(mean_total_bac))
 str(asv_tab_pseudoabund)
 
-### IDENTIFICATION ###
+# IDENTIFICATION -----
 # Calculate the general maximum sd for the dataset and return the highest, to have an idea of which are the changes
 # in relative abundances for our datset
 general_max_sd_abundance(asv_tab_pseudoabund, group_var = asv_num, abundance_col = pseudoabundance, x = 5)
@@ -89,7 +89,7 @@ cluster <- env_variables()
 
 bray_curtis_results <- dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
 
-### recober metadata for plotting
+### recover metadata for plotting
 metadata <- asv_tab_l_rel_abund %>%
   select(sample_id, date_hour, day_moment) %>%
   unique()
