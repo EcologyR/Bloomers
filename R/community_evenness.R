@@ -49,8 +49,7 @@ community_evenness <- function(abundances, index = "Shannon") {
 
 ## Example with bloomers data
 
-bloomersdata <- asv_tab_blooms %>% mutate(taxon = asv_num, date_hour = date_hour.x) %>%
-  select(taxon, date_hour, pseudoabundance)
+load("./data/bloomersdata.rda")
 
 bloomers_abund <- bloomersdata %>% pivot_wider(names_from = date_hour, values_from = pseudoabundance)
 
@@ -62,7 +61,7 @@ community_evenness(abund1, index = "Pielou")
 
 for (i in 2:dim(bloomers_abund)[2]){
 
-  abundt = community_evenness(c(as.numeric(unlist(bloomers_abund[i]))), index = "shannon")
+  abundt = community_evenness(c(as.numeric(unlist(bloomers_abund[i]))), index = "Shannon")
  if (i == 2) results = abundt else results = rbind(results, abundt)
   }
 data.frame(time_event = 1:length(results), evenness = as.numeric(results))
