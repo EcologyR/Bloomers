@@ -42,11 +42,16 @@ get_anomalies <- function(abundance = NULL,
     #and calculate the z-score for this moving window.
     z[i] <- round((abundance[i] - xt[i]) / sdt[i],3)
   }
+  if(any(z > 1.96)){ #SHOULD WE MAKE THE LIMIT CUSTOMIZABLE AS A PARAM?
+    anomaly <- "anomaly_detected"
+  } else {
+    anomaly <- "no_anomalies"
+  }
   #z <- ifelse(z = Inf, NA, z) # would Inf's be problematic?
   if (plotting) {
-    color_ <- ifelse(abs(z) > 1.5, "red", "black")
+    color_ <- ifelse(abs(z) > 1.96, "red", "black")
     color_ <- ifelse(is.na(z), "white", color_)
-    pch_ <- ifelse(z > 1.5, 19, 1)
+    pch_ <- ifelse(z > 1.96, 19, 1)
     time <- 1:length(abundance)
     plot(
       abundance ~ time,
@@ -58,5 +63,5 @@ get_anomalies <- function(abundance = NULL,
     )
     lines(abundance ~ time)
   }
-  return(z)
+  return(list(anomaly = anomaly, time_points = z))
 }
