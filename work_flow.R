@@ -169,4 +169,4 @@ asv_tab_pseudoabund_split$asv1 %>%
   D(sample_id, pseudoabundance)
 
 
-
+## calculate changes in relative abundances
