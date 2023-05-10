@@ -18,6 +18,7 @@
 #' get_anomalies_season(abundance, season)
 #' @author I. Bartomeus
 #'
+# FUNCTION NOT UPDATED AFTER ENHANCING get_anomalies.R
 get_anomalies_season <- function(abundance = NULL,
                                  season = NULL,
                                  compare_season = "all",
@@ -44,9 +45,9 @@ get_anomalies_season <- function(abundance = NULL,
     for (i in 1:length(u_season)) {
       #calculate for each season, the mean and sd of abundance.
       seasons$x_abundance_season[i] <-
-        mean(d$abundance[which(d$season == u_season[i])])
+        mean(d$abundance[which(d$season == u_season[i])]) #NOTE: Do we want the target datapoint (j) to be included in this mean?
       seasons$sd_abundance_season[i] <-
-        sd(d$abundance[which(d$season == u_season[i])])
+        sd(d$abundance[which(d$season == u_season[i])]) #IDEM
     }
     d2 <- merge(d, seasons, by = "season", all.x = TRUE)
     d2 <- d2[order(d2$id), ]
@@ -62,7 +63,7 @@ get_anomalies_season <- function(abundance = NULL,
       color_ <-
         rep(1:length(u_season),
             length(abundance) / length(u_season)) #This will FAIL if years are not complete. FIX
-      pch_ <- ifelse(z > 1.5, 19, 1)
+      pch_ <- ifelse(z > 1.96, 19, 1)
       time <- 1:length(abundance)
       plot(
         abundance ~ time,

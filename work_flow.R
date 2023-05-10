@@ -18,16 +18,19 @@ library(vegan)
 # PREPROCESSING -----
 # get example data
 data <- prepare_example_data()
+str(data)
 
 # calculate relative abundances
 asv_tab_l_rel_abund <- data$asv_tab_l %>%
   calculate_rel_abund(group_cols = sample_id)
+str(asv_tab_l_rel_abund)
 
 # calculate pseudoabundandances
 asv_tab_pseudoabund <- asv_tab_l_rel_abund %>%
   calculate_pseudoabund(abund_data = data$abund_data,  by_ =  c('sample_id', 'sampling_site'),
                         rel_abund = as.numeric(relative_abundance),
                         total_abund = as.numeric(mean_total_bac))
+str(asv_tab_pseudoabund)
 
 # IDENTIFICATION -----
 # Calculate the general maximum sd for the dataset and return the highest, to have an idea of which are the changes
@@ -92,7 +95,7 @@ cluster <- env_variables()
 
 bray_curtis_results <- dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
 
-### recober metadata for plotting
+### recover metadata for plotting
 metadata <- asv_tab_l_rel_abund %>%
   select(sample_id, date_hour, day_moment) %>%
   unique()
