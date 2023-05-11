@@ -4,24 +4,40 @@
 \alias{get_anomalies}
 \title{get_anomalies}
 \usage{
-get_anomalies(abundance = NULL, time_lag = 4, plotting = TRUE)
+get_anomalies(
+  values = NULL,
+  time_lag = 4,
+  cutoff = 1.96,
+  negative = FALSE,
+  plotting = TRUE
+)
 }
 \arguments{
-\item{abundance}{a vector of abundance per sampling period (numeric)}
-
 \item{time_lag}{a single value (number) specifying how many previous data points do
-you want to consider to calculate the anomalies}
+you want to consider to calculate the anomalies. Default to 4}
+
+\item{cutoff}{Z-value threshold to detect an anomaly. default at 1.96, which is at percentile 95\%}
+
+\item{negative}{we want to detect only positive anomaliess or also negative. Default to FALSE}
 
 \item{plotting}{should we plot the time series? Default to TRUE}
+
+\item{value}{a vector of abundances, relative abundances or any other parameter
+per sampling period (numeric)}
+}
+\value{
+A list of two elements, "anomaly" (TRUE / FALSE) and "z" (a vector
+of z-scores, one per time_point. Note that the first time points are NA, as those have
+no previous records to calculate the moving window)
 }
 \description{
 A function to calculate anomalies in a time series by calculating
-z-values with respect to a specified moving window.
+z-values of each data point with respect to a specified previous moving window.
 }
 \examples{
 abundance <- runif(16, 0, 2000)
 abundance[10] <- 20000
-get_anomalies(abundance, time_lag)
+get_anomalies(values = abundance)
 }
 \author{
 I. Bartomeus
