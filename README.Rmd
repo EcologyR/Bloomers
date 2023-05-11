@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 <!-- `r badger::badge_codefactor("ecologyr/templaterpackage")` -->
 <!-- badges: end -->
 
-The main objective of Bloomers package is to detect sharp changes in abundances for individual taxa in microbial communities.
+The main objective of "Bloomers" package is to detect sharp changes in abundances for individual taxa in microbial communities. A bloomer is defined as a taxa that has a fast and significant increase in a community compared to the rest of species. Examples are given for bacteria found in the Mediterranean season. 
 
 ## Installation
 
@@ -43,8 +43,9 @@ The code to create this package is available [here](https://github.com/EcologyR/
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-# library(templateRpackage)
+# library(Bloomers)
 ## basic example code
+
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
