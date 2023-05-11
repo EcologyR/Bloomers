@@ -1,4 +1,3 @@
-
 #' Get example dataset
 #'
 #' @param abund_data a txt dataset with total abundance data and sample_id codes.

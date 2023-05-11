@@ -6,7 +6,8 @@
 #' @return
 #' @export
 #'
-#' @examples dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
+#' @examples
+#' #dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
 dissimilarity_matrix <- function(data, sample_id_col) {
 
   # Extract rownames to mantain them at the output table
