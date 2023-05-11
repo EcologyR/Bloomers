@@ -33,7 +33,7 @@ The code to create this package is available
 
 ## The workflow of the bloomers package is summarized in the following graph
 
-![](logos/scheme/shceme_bloomers_pk.png)
+![](inst/shceme_bloomers_pk.png)
 
 ## Example
 
@@ -88,4 +88,4 @@ If using this package, please cite it:
 
 Put your funding here from the Institut de Ciencies del Mar
 
-![](https://github.com/EcologyR/Bloomers/blob/master/inst/ICM-logotip.jpg)
+![](inst/ICM-logotip.jpg)
