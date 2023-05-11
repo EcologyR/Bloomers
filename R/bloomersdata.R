@@ -9,11 +9,11 @@
 #'   \item taxon: ASV
 #'   \item date_hour: a combination in one string of the date and time of sampling
 #'   \item pseudoabundance: pseudoabundance value for that sample
-#'
 #'   }
+#'
+#' "bloomersdata"
 #'
 #' @docType data
 #' @keywords datasets
-#' @name bloomersdata
 #' @usage data(bloomersdata)
 #' @format A data frame with 3 variables

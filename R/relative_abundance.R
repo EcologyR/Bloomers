@@ -8,12 +8,11 @@
 #' \itemize{
 #'   \item taxa: ASV
 #'   \item abund: number of reads of each taxa/ASV
-#'   \item sample_id: unique identification event of sampling
-#'
+#'   \item sample_id: unique identification event of sampling'
 #'   }
+#'   "relative_abundances"
 #'
 #' @docType data
 #' @keywords datasets
-#' @name relatabun
-#' @usage data(relatabun)
+#' @usage data(relative_abundances)
 #' @format A data frame with 3 variables
