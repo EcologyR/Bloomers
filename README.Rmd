@@ -47,7 +47,7 @@ The code to create this package is available [here](https://github.com/EcologyR/
 
 ## The workflow of the bloomers package is summarized in the following graph
 
-![](inst/shceme_bloomers_pk.png)
+![](vignettes/shceme_bloomers_pk.png)
 
 ## Example
 
@@ -92,5 +92,5 @@ If using this package, please cite it:
 Put your funding here from the Institut de Ciencies del Mar
 
 
-![](inst/ICM-logotip.jpg)
+![](vignettes/ICM-logotip.jpg)
 
