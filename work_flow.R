@@ -24,6 +24,9 @@ asv_tab_l_rel_abund <- data$asv_tab_l %>%
   calculate_rel_abund(group_cols = sample_id)
 str(asv_tab_l_rel_abund)
 
+# data for relative abundances
+relatabun <- data$asv_tab_l %>% select(asv_num, reads, sample_id) %>% rename(taxa = asv_num, abund = reads)
+
 # calculate pseudoabundandances
 asv_tab_pseudoabund <- asv_tab_l_rel_abund %>%
   calculate_pseudoabund(abund_data = data$abund_data,  by_ =  c('sample_id', 'sampling_site'),
