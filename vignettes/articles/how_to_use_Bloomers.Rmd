@@ -15,17 +15,11 @@ knitr::opts_chunk$set(
 
 # Import functions and upload libraries
 ```{r}
-source('../../R/prepare_example_data.R')
-source('../../R/calculate_relative_abundance.R')
-source('../../R/calculate_pseudoabund.R')
-source('../../R/get_anomalies.R')
-source("../../R/blooming_event_summary.R")
-#source('../../R/community_evenness.R')
-source('../../R/compute_bray_curtis_dissimilariy.R')
-
+library(devtools)
+#install_github(repo = "EcologyR/Bloomers")
 library(tidyverse)
 library(vegan)
-#library(bloomers)
+library(Bloomers)
 ```
 
 # Get example data
