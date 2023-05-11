@@ -17,6 +17,7 @@
 #' community_evenness(abundances, index = "Simpson") #it goes from 0 to number of species
 #' community_evenness(abundances, index = "Pielou")
 #'
+#' @author I. Mendoza
 #'
 #' @export
 
