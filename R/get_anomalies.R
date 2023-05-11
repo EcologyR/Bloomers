@@ -1,14 +1,19 @@
 #' get_anomalies
 #'
 #' @description A function to calculate anomalies in a time series by calculating
-#' z-values with respect to a specified moving window.
+#' z-values of each data point with respect to a specified previous moving window.
 #'
-#' @param abundance a vector of abundance per sampling period (numeric)
+#' @param value a vector of abundances, relative abundances or any other parameter
+#' per sampling period (numeric)
 #' @param time_lag a single value (number) specifying how many previous data points do
-#' you want to consider to calculate the anomalies
+#' you want to consider to calculate the anomalies. Default to 4
+#' @param cutoff Z-value threshold to detect an anomaly. default at 1.96, which is at percentile 95%
 #' @param plotting should we plot the time series? Default to TRUE
 #'
-#' @return
+#' @return A list of two elements, "anomaly" (TRUE / FALSE) and "z" (a vector
+#' of z-scores, one per time_point. Note that the first time points are NA, as those have
+#' no previous records to calculate the moving window)
+#'
 #' @export
 #'
 #' @examples
@@ -21,31 +26,49 @@ get_anomalies <- function(values = NULL,
                           time_lag = 4,
                           cutoff = 1.96,
                           plotting = TRUE) {
-  #test values is numeric
-  # Rest of the function code that calculates anomalies using the `values` vector
-  stopifnot(is.numeric(values))
-  #test time_lag is a single value
-  stopifnot(length(time_lag) == 1)
-
+  #test params are as expected.
+  if(is.numeric(values) == FALSE){
+    stop("Function stopped: values vector need to be numeric")
+  }
+  if(is.vector(values) == FALSE){
+    stop("Function stopped: values needs to be a vector")
+  }
+  if(is.numeric(time_lag) == FALSE){
+    stop("Function stopped: time_lag needs to be numeric")
+  }
+  if(length(time_lag) == 1 == FALSE){
+    stop("Function stopped: time_lag needs to be length one")
+  }
+  if(is.numeric(cutoff) == FALSE){
+    stop("Function stopped: cutoff needs to be numeric")
+  }
+  if(length(cutoff) == 1 == FALSE){
+    stop("Function stopped: cutoff needs to be length one")
+  }
+  if(is.logical(plotting) == FALSE){
+    stop("Function stopped: plotting needs to be logical (TRUE / FALSE)")
+  }
+  #prevent issues with time_lags larger than the series.
+  if(length(values) < (length(cutoff)*2)){
+    stop("Function stopped: Time series need to be at least twice the length of the cutoff")
+  }
   #calculate for each element, the mean and ds values for the previous time lag
   xt <- rep(NA, length(values))
-  xt[1:time_lag] <- NA
   sdt <- rep(NA, length(values))
-  sdt[1:time_lag] <- NA
   z <- rep(NA, length(values))
-  z[1:time_lag] <- NA
   for (i in (1 + time_lag):length(values)) {
     xt[i] <- mean(values[(i - time_lag):(i-1)])
     sdt[i] <- sd(values[(i - time_lag):(i-1)])
+    ifelse(sdt[i] == 0, 0.001, sdt[i]) #This is to prevent Inf's when there is no variance.
     #and calculate the z-score for this moving window.
     z[i] <- round((values[i] - xt[i]) / sdt[i],3)
   }
+  #catch if there is an anomaly or not
   if(any(z > cutoff, na.rm = TRUE)){
-    anomaly <- "anomaly_detected"
+    anomaly <- TRUE
   } else {
-    anomaly <- "no_anomalies"
+    anomaly <- FALSE
   }
-  #z <- ifelse(z = Inf, NA, z) # would Inf's be problematic?
   if (plotting) {
     color_ <- ifelse(abs(z) > cutoff, "red", "black")
     color_ <- ifelse(is.na(z), "white", color_)
@@ -61,5 +84,5 @@ get_anomalies <- function(values = NULL,
     )
     lines(values ~ time)
   }
-  return(list(anomaly = anomaly, time_points = z))
+  return(list(anomaly = anomaly, z = z))
 }
