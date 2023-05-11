@@ -11,6 +11,8 @@ calculate_pseudoabund(data, abund_data, by_ = NULL, rel_abund, total_abund)
 
 \item{abund_data}{a tibble with total abundance data}
 
+\item{by_}{columns used to merge dataframes (default is NULL)}
+
 \item{rel_abund}{abundance column with relative abundances (0-1) for each taxa from the data tibble}
 
 \item{total_abund}{column with total abundance data from abund_data tibble}
