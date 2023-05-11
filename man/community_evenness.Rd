@@ -20,12 +20,12 @@ Calculates the evenness index of a community given its abundance data and
 diversity index. It is possible to choose among three different indices (Shannon, Simpson or Pielou)
 }
 \examples{
-community_evenness(c(10, 20, 30), "Shannon")
-community_evenness(matrix(c(10, 20, 30, 5, 15, 25), ncol = 2), "Simpson")
+#community_evenness(c(10, 20, 30), "Shannon")
+#community_evenness(matrix(c(10, 20, 30, 5, 15, 25), ncol = 2), "Simpson")
 
-community_evenness(abundances, index = "Shannon") #it goes from 0 to 1
-community_evenness(abundances, index = "Simpson") #it goes from 0 to number of species
-community_evenness(abundances, index = "Pielou")
+#community_evenness(abundances, index = "Shannon") #it goes from 0 to 1
+#community_evenness(abundances, index = "Simpson") #it goes from 0 to number of species
+#community_evenness(abundances, index = "Pielou")
 
 }
 \author{

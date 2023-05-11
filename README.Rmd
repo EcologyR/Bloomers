@@ -59,9 +59,9 @@ You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-da
 Put here a plot representing blooming species and how we do detect anomalies
 
 ```{r plot.bloomers, echo = TRUE, eval = FALSE}
-load("./data/bloomersdata.rda")
+#load("./data/bloomersdata.rda")
 
-plot(bloomersdata$pseudoabundance) #improve this example 
+#plot(bloomersdata$pseudoabundance) #improve this example 
 
 ```
 

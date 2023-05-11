@@ -11,3 +11,8 @@
 ^pkgdown$
 .Rprofile
 ^vignettes/articles$
+^/data-raw
+^work_flow.R
+^/R/get_anomalies_season.R
+^/R/Nacho_workflow_demo.R
+^/Data

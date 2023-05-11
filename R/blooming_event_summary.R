@@ -16,11 +16,13 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' abundance <- runif(16, 0, 2000)
 #' abundance[10] <- 20000
 #' z_vector <- get_anomalies(values = abundance)[[2]]
 #' blooming_summary(values = abundance, z_vector = z_vector)
 #' blooming_summary(values  = abundance, anomaly_point = 10)
+#' }
 #' @author O. Deulofeu, I. Bartomeus
 blooming_summary <- function(values,
                              z_vector,
