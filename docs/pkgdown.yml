@@ -1,6 +1,7 @@
 pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
-articles: {}
-last_built: 2023-03-24T12:16Z
+articles:
+  how_to_use_Bloomers: how_to_use_Bloomers.html
+last_built: 2023-05-11T17:48Z
 
