@@ -17,7 +17,7 @@ calculate_rel_abund <- function(data, group_cols){
   return(new_data)
 }
 
-test
+#test
 # new_dataa  %>%
 #   group_by({{group_cols}}) %>%
 #   dplyr::summarize(sum = sum(relative_abundance))

@@ -51,9 +51,10 @@ community_evenness <- function(abundances, index = "Shannon") {
 
 load("./data/bloomersdata.rda")
 
-bloomers_abund <- bloomersdata %>% pivot_wider(names_from = date_hour, values_from = pseudoabundance)
+bloomers_abund <- bloomersdata %>%
+  pivot_wider(names_from = date_hour, values_from = pseudoabundance)
 
-abund1 <- c(as.numeric(unlist(bloomers_abund[2])))
+c
 
 community_evenness(abund1, index = "Shannon")
 community_evenness(abund1, index = "Simpson")
