@@ -35,7 +35,9 @@ community_evenness <- function(abundances, index = "Shannon") {
     pi <- abundances / N
     D <- sum(pi^2)
     E <- 1/D
-  } else if (index == "Pielou"){
+  }
+
+  else if (index == "Pielou"){
 
     E <- -sum((abundances/sum(abundances))*log(abundances/sum(abundances)))
   }
