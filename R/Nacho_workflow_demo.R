@@ -32,7 +32,7 @@ z <- asv_tab_pseudoabund %>%
   group_by(asv_num) %>%
   dplyr::summarize(anomalies_ab = get_anomalies(values = pseudoabundance, plotting = TRUE)[[1]],
                    anomalies_ra = get_anomalies(values = relative_abundance, plotting = TRUE)[[1]])
-z #TODO AÑADIR EVENESS Y BC MAYBE FIX NA IGNORE IN VALUES
+z #TODO AÑADIR EVENESS Y BC
 
 #miramos anomalias solo de preudoabundancias
 taxa <- unique(asv_tab_pseudoabund$asv_num)
