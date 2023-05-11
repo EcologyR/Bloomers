@@ -2,7 +2,7 @@
 #' Calculate relative abundances from a data with reads from each taxa.
 #'
 #' @param data a long tibble with reads as a column
-#' @param groups columns to group by that identify exclusively each sample
+#' @param group_cols columns to group by that identify exclusively each sample
 #'
 #' @return
 #' @export

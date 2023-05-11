@@ -5,6 +5,7 @@
 #' @param abund_data a tibble with total abundance data
 #' @param rel_abund abundance column with relative abundances (0-1) for each taxa from the data tibble
 #' @param total_abund column with total abundance data from abund_data tibble
+#' @param by_ columns used to merge dataframes (default is NULL)
 #'
 #' @return
 #' @export
