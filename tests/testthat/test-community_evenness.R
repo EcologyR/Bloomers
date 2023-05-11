@@ -1,7 +1,3 @@
-library(testthat)
-
-# Define a test file for the function
-test_file("tests/testthat/test-community_evenness.R")
 
 # Write test cases using expect_equal() function
 test_that("community_evenness calculates Shannon index correctly", {
