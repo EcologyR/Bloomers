@@ -74,8 +74,9 @@ blooming_summary <- function(values,
   out <- data.frame(anomaly_time_point = NA, anomaly_value = NA, compatible_values = NA, bloom_duration = NA)
   for(i in 1:length(points_)){
     nexts <- values[(points_[i]+1):length(values)]
-    next_logic <- ifelse(nexts < (anomaly_values[i] + perc[i]) &
-                           nexts > (anomaly_values[i] - perc[i]), 1, 0)
+    next_logic <- ifelse(nexts < (anomaly_values[i] - perc[i])
+                         # & nexts > (anomaly_values[i] + perc[i]) #esto es para detectar subidas tambien
+                         ,1, 0)
     out[i,1] <- points_[i]
     out[i,2] <- anomaly_values[i]
     out[i,3] <- sum(next_logic)
