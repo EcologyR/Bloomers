@@ -19,7 +19,7 @@
 #' @examples
 #' abundance <- runif(16, 0, 2000)
 #' abundance[10] <- 20000
-#' get_anomalies(values = abundance, time_lag)
+#' get_anomalies(values = abundance)
 #' @author I. Bartomeus
 #'
 get_anomalies <- function(values = NULL,
