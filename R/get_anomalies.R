@@ -11,6 +11,7 @@
 #' @param negative we want to detect only positive anomaliess or also negative. Default to FALSE
 #' @param plotting should we plot the time series? Default to TRUE
 #' @param na_rm Should NA values be allowed in values? Default to FALSE.
+#' @param texts user specifies text to add to the plot e.g. taxa.
 #'
 #' @return A list of two elements, "anomaly" (TRUE / FALSE) and "z" (a vector
 #' of z-scores, one per time_point. Note that the first time points are NA, as those have
@@ -29,7 +30,8 @@ get_anomalies <- function(values = NULL,
                           cutoff = 1.96,
                           negative = FALSE,
                           plotting = TRUE,
-                          na_rm = FALSE) {
+                          na_rm = FALSE,
+                          texts = "taxa") {
   #test params are as expected.
   if(is.numeric(values) == FALSE){
     stop("Function stopped: values vector need to be numeric")
@@ -89,25 +91,9 @@ get_anomalies <- function(values = NULL,
   }
   if (plotting) {
     if(negative == FALSE){
-      "black"
-    color_ <- ifelse(z > cutoff, "#b41e31", "black")
-    color_ <- ifelse(is.na(z), "white", color_)
-    pch_ <- ifelse(z > cutoff, 19, 1)
-    time <- 1:length(values)
-    plot(
-      values ~ time,
-      t = "b",
-      col = color_,
-      pch = pch_,
-      las = 1,
-      xlab = "time"
-    )
-    lines(values ~ time)}
-    else{
-      "black"
       color_ <- ifelse(abs(z) > cutoff, "#b41e31", "black")
       color_ <- ifelse(is.na(z), "white", color_)
-      pch_ <- ifelse(abs(z) > cutoff, 19, 1)
+      pch_ <- ifelse(z > cutoff, 19, 1)
       time <- 1:length(values)
       plot(
         values ~ time,
@@ -115,10 +101,24 @@ get_anomalies <- function(values = NULL,
         col = color_,
         pch = pch_,
         las = 1,
-        xlab = "time"
-      )
+        xlab = "time",
+        main = texts)
       lines(values ~ time)
-    }
+      }else{
+        color_ <- ifelse(abs(z) > cutoff, "#b41e31", "black")
+        color_ <- ifelse(is.na(z), "white", color_)
+        pch_ <- ifelse(abs(z) > cutoff, 19, 1)
+        time <- 1:length(values)
+        plot(
+          values ~ time,
+          t = "b",
+          col = color_,
+          pch = pch_,
+          las = 1,
+          xlab = "time",
+          main = texts)
+        lines(values ~ time)
+        }
   }
   return(list(anomaly = anomaly, z = z))
 }
