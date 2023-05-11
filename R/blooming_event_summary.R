@@ -34,7 +34,7 @@ blooming_summary <- function(values,
   if(is.numeric(z_vector) == FALSE){
     stop("Function stopped: z_vector need to be numeric")
   }
-  if(length(values) == length(z_vector)){
+  if(length(values) != length(z_vector)){
     stop("Function stopped: values and z_vector are of different length")
   }
   if(is.numeric(cutoff) == FALSE){
@@ -77,7 +77,11 @@ blooming_summary <- function(values,
     out[i,1] <- points_[i]
     out[i,2] <- anomaly_values[i]
     out[i,3] <- sum(next_logic)
-    out[i,4] <- sum(next_logic[1:which(next_logic == 0)[1]])
+    if(any(next_logic == 0, na.rm = TRUE)){ #catch when there are no zeros
+      out[i,4] <- sum(next_logic[1:which(next_logic == 0)[1]])
+    } else{
+      out[i,4] <- 0
+    }
   }
   return(out)
 }
