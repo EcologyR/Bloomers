@@ -34,9 +34,9 @@ devtools::install_github("EcologyR/Bloomers")
 
 The code to create this package is available [here](https://github.com/EcologyR/Bloomers).
 
-##The workflow of the bloomers package is summarized in the following graph
+## The workflow of the bloomers package is summarized in the following graph
 
-#![](logos/scheme/shceme_bloomers_pk.png)
+![](logos/scheme/shceme_bloomers_pk.png)
 
 ## Example
 
@@ -56,10 +56,13 @@ summary(cars)
 
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
 
-You can also embed plots, for example:
+Put here a plot representing blooming species and how we do detect anomalies
 
-```{r pressure, echo = TRUE, eval = FALSE}
-plot(pressure)
+```{r plot.bloomers, echo = TRUE, eval = FALSE}
+load("./data/bloomersdata.rda")
+
+plot(bloomersdata$pseudoabundance) #improve this example 
+
 ```
 
 In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
@@ -78,5 +81,5 @@ If using this package, please cite it:
 Put your funding here from the Institut de Ciencies del Mar
 
 
-#![](https://github.com/EcologyR/Bloomers/blob/master/inst/ICM-logotip.jpg)
+![](https://github.com/EcologyR/Bloomers/blob/master/inst/ICM-logotip.jpg)
 
