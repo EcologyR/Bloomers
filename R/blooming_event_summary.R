@@ -14,7 +14,7 @@ blooming_summary <- function(data, anomaly_point, relative_abundance,  range_per
   relative_abundance_anomaly <- data %>%
     dplyr::mutate(row_index := row_number()) %>%
     dplyr::filter(row_index == anomaly_point) %>%
-    select(relative_abundance) %>%
+    select({{relative_abundance}}) %>%
     as.numeric()
 
   perc <-   relative_abundance_anomaly*range_percentage
@@ -22,18 +22,18 @@ blooming_summary <- function(data, anomaly_point, relative_abundance,  range_per
   data_blooming_maintained  <- data %>%
     dplyr::mutate(row_index := row_number()) %>%
     dplyr::filter(row_index >= anomaly_point) %>%
-    dplyr::mutate(mantaining_bloom = case_when(between(relative_abundance, relative_abundance_anomaly-perc, relative_abundance_anomaly+perc) ~ 'TRUE',
-                                               #relative_abundance <  ~ 'TRUE',
+    dplyr::mutate(mantaining_bloom = case_when(between({{relative_abundance}}, relative_abundance_anomaly-perc, relative_abundance_anomaly+perc) ~ 'TRUE',
                                                .default  = 'FALSE')) %>%
     dplyr::mutate(binomial_bloom = case_when(mantaining_bloom == 'TRUE' ~ 1,
                                              mantaining_bloom == 'FALSE' ~ 0)) %>%
     dplyr::mutate(anormal_abundance_points = sum(binomial_bloom)) %>%
-    group_by(asv_num, grp = with(rle(binomial_bloom), rep(seq_along(lengths), lengths))) %>%
+    group_by(grp = with(rle(binomial_bloom), rep(seq_along(lengths), lengths))) %>% #asv_num,
     mutate(consecutive_bloom = 1:n()) %>%
     ungroup() %>%
     dplyr::filter(grp == 1) %>%
-    select(-grp, -binomial_bloom, -mantaining_bloom, -row_index, -relative_abundance) %>%
+    select(-grp, -binomial_bloom, -mantaining_bloom, -row_index, -{{relative_abundance}}) %>%
     slice_max(consecutive_bloom, n = 1) %>%
     cbind(relative_abundance_anomaly)
+
   return(data_blooming_maintained)
 }
