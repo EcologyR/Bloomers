@@ -39,7 +39,7 @@ The code to create this package is available
 
 ## The workflow of the bloomers package is summarized in the following graph
 
-![](inst/shceme_bloomers_pk.png)
+![](man/figures/shceme_bloomers_pk.png)
 
 ## Example
 
@@ -94,4 +94,4 @@ If using this package, please cite it:
 
 Put your funding here from the Institut de Ciencies del Mar
 
-![](inst/ICM-logotip.jpg)
+![](man/figures/ICM-logotip.jpg)
