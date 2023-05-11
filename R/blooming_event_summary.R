@@ -32,7 +32,8 @@ blooming_summary <- function(data, anomaly_point, relative_abundance,  range_per
     mutate(consecutive_bloom = 1:n()) %>%
     ungroup() %>%
     dplyr::filter(grp == 1) %>%
-    select(-grp, -binomial_bloom, -mantaining_bloom, -row_index) %>%
-    slice_max(consecutive_bloom, n = 1)
+    select(-grp, -binomial_bloom, -mantaining_bloom, -row_index, -relative_abundance) %>%
+    slice_max(consecutive_bloom, n = 1) %>%
+    cbind(relative_abundance_anomaly)
   return(data_blooming_maintained)
 }
