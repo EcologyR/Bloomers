@@ -83,10 +83,9 @@ get_anomalies <- function(values = NULL,
     }
   }
   if (plotting) {"black"
-    color_ <- ifelse(z > cutoff, "#06805F", "black")
-    color_ <- ifelse(-z > cutoff, "#800627", "black")
+    color_ <- ifelse(abs(z) > cutoff, "#b41e31", "black")
     color_ <- ifelse(is.na(z), "white", color_)
-    pch_ <- ifelse(z > cutoff, 19, 1)
+    pch_ <- ifelse(abs(z) > cutoff, 19, 1)
     time <- 1:length(values)
     plot(
       values ~ time,
