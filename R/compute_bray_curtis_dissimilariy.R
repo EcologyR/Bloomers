@@ -46,7 +46,6 @@ dissimilarity_matrix <- function(data, sample_id_col) {
     left_join(samples_index, by = c('samples' = 'sample_id')) %>%
     dplyr::filter(row_index == (row_index_2-1))
 
-
   # # Chech that diagonal elements to zero (i.e., each sample is identical to itself)
   # diag(dissim_mat) <- 0
 

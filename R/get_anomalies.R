@@ -83,7 +83,7 @@ get_anomalies <- function(values = NULL,
     }
   }
   if (plotting) {
-    if(negative == FALSE)
+    if(negative == FALSE){
       "black"
     color_ <- ifelse(z > cutoff, "#b41e31", "black")
     color_ <- ifelse(is.na(z), "white", color_)
@@ -97,7 +97,7 @@ get_anomalies <- function(values = NULL,
       las = 1,
       xlab = "time"
     )
-    lines(values ~ time)
+    lines(values ~ time)}
     else{
       "black"
       color_ <- ifelse(abs(z) > cutoff, "#b41e31", "black")
@@ -117,3 +117,4 @@ get_anomalies <- function(values = NULL,
   }
   return(list(anomaly = anomaly, z = z))
 }
+
