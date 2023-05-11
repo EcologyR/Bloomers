@@ -13,6 +13,7 @@
 #' #community_evenness(c(10, 20, 30), "Shannon")
 #' #community_evenness(matrix(c(10, 20, 30, 5, 15, 25), ncol = 2), "Simpson")
 #'
+#' #abundances <- c(60,54,87,5)
 #' #community_evenness(abundances, index = "Shannon") #it goes from 0 to 1
 #' #community_evenness(abundances, index = "Simpson") #it goes from 0 to number of species
 #' #community_evenness(abundances, index = "Pielou")
