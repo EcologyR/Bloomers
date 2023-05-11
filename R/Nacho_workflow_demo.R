@@ -5,6 +5,7 @@ source('R/calculate_pseudoabund.R')
 source('R/get_anomalies.R')
 source("R/blooming_event_summary.R")
 
+library(Bloomers)
 library(tidyverse)
 library(vegan)
 
@@ -24,14 +25,14 @@ asv_tab_pseudoabund <- asv_tab_l_rel_abund %>%
                         rel_abund = as.numeric(relative_abundance),
                         total_abund = as.numeric(mean_total_bac))
 str(asv_tab_pseudoabund)
-view(asv_tab_pseudoabund)
+
 #Discover anomalies
 z <- asv_tab_pseudoabund %>%
   as_tibble() %>%
   group_by(asv_num) %>%
   dplyr::summarize(anomalies_ab = get_anomalies(values = pseudoabundance, plotting = TRUE)[[1]],
                    anomalies_ra = get_anomalies(values = relative_abundance, plotting = TRUE)[[1]])
-z
+z #TODO AÑADIR EVENESS Y BC MAYBE FIX NA IGNORE IN VALUES
 
 #miramos anomalias solo de preudoabundancias
 taxa <- unique(asv_tab_pseudoabund$asv_num)
@@ -70,5 +71,5 @@ for(i in 1:length(taxa)){
   z_temp <- subset(out, taxa == taxa[i])
   out2[i, 2:5] <- blooming_summary(values = temp$pseudoabundance,
                                    z_vector = as.numeric(z_temp[2:17]))
-} #WARNING THIS DROPS THE SECOND ANOMALY IF PRESENYT
+} #WARNING THIS DROPS THE SECOND ANOMALY IF PRESENYT, ITS JUST A MATTER OF STPRING IT (SECOND LOOP?)
 out2
