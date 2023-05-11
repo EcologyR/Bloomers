@@ -52,6 +52,7 @@ community_evenness <- function(abundances, index = "Shannon") {
 ## Example with bloomers data
 
 load("./data/bloomersdata.rda")
+library(tidyr)
 
 bloomers_abund <- bloomersdata %>% pivot_wider(names_from = date_hour, values_from = pseudoabundance)
 
