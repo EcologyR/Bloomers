@@ -44,7 +44,9 @@ dissimilarity_matrix <- function(data, sample_id_col) {
     as_tibble() %>%
     pivot_longer(cols = starts_with('HFW'), values_to = 'bray_curtis_result', names_to = 'samples') %>%
     left_join(samples_index, by = c('samples' = 'sample_id')) %>%
-    dplyr::filter(row_index == (row_index_2-1))
+    dplyr::filter(row_index == (row_index_2-1)) %>%
+    select(samples, row_index_2, bray_curtis_result) %>%
+    add_row(.before = 1)
 
   # # Chech that diagonal elements to zero (i.e., each sample is identical to itself)
   # diag(dissim_mat) <- 0
