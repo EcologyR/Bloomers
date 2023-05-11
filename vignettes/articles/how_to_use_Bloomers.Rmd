@@ -15,17 +15,11 @@ knitr::opts_chunk$set(
 
 # Import functions and upload libraries
 ```{r}
-source('../../R/prepare_example_data.R')
-source('../../R/calculate_relative_abundance.R')
-source('../../R/calculate_pseudoabund.R')
-source('../../R/get_anomalies.R')
-source("../../R/blooming_event_summary.R")
-source('../../R/community_evenness.R')
-source('../../R/compute_bray_curtis_dissimilariy.R')
-
+library(devtools)
+#install_github(repo = "EcologyR/Bloomers")
 library(tidyverse)
 library(vegan)
-#library(bloomers)
+library(Bloomers)
 ```
 
 # Get example data
@@ -55,11 +49,11 @@ head(asv_tab_pseudoabund)
 We calculate different diversity parameters to check if the blooming events detected have an effect on the community structure
 ## Community eveness
 ```{r}
-community_eveness <- asv_tab_pseudoabund %>%
-  as_tibble() %>%
-  group_by(sample_id) %>%
-  dplyr::summarise(community_eveness_result = community_evenness(abundances = pseudoabundance, index = "Shannon"))
-head(community_eveness)
+# community_eveness <- asv_tab_pseudoabund %>%
+#   as_tibble() %>%
+#   group_by(sample_id) %>%
+#   dplyr::summarise(community_eveness_result = community_evenness(abundances = pseudoabundance, index = "Shannon"))
+# head(community_eveness)
 ```
 ## Community Bray-Curtis dissimilarity
 ```{r}
@@ -78,11 +72,15 @@ z #TODO AÑADIR EVENESS Y BC
 ```
 ## For community eveness and bray curtis dissimilarity
 ```{r}
-bray_curtis_results %>%
-  cbind(community_eveness) %>%
-  #group_by(sample_id) %>%
-  dplyr::summarize(anomalies_ab = get_anomalies(values = bray_curtis_result, plotting = TRUE)[[1]],
-                   anomalies_ra = get_anomalies(values = community_eveness_result, plotting = TRUE)[[1]])
+# bray_curtis_results %>%
+#   cbind(community_eveness) %>%
+#   #group_by(sample_id) %>%
+#   dplyr::summarize(anomalies_ab = get_anomalies(values = bray_curtis_result, plotting = TRUE)[[1]],
+#                    anomalies_ra = get_anomalies(values = community_eveness_result, plotting = TRUE)[[1]])
+```
+# Summarize blooming events
+```{r}
+
 ```
 
 
