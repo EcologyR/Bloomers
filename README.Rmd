@@ -9,7 +9,8 @@ TODO:
 - tests are failing (both get and evenness)
 - examples fail, recheck
 - Datasets (if any) need documentation.
--
+- generar web con packege down
+- 
 
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
