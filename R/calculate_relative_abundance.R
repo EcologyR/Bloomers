@@ -1,5 +1,5 @@
 
-#' Calculate relative abundances
+#' Calculate relative abundances from a data with reads from each taxa.
 #'
 #' @param data a long tibble with reads as a column
 #' @param groups columns to group by that identify exclusively each sample
@@ -8,6 +8,8 @@
 #' @export
 #'
 #' @examples
+#'
+#'
 calculate_rel_abund <- function(data, group_cols){
   ##check col sums = 1
   new_data <- data %>%
