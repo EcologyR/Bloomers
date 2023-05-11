@@ -6,34 +6,46 @@
 #' @param range_percentage percentage of change of the relative abundance that at which we admit that the blooming event is mantained
 #'
 #' @return
+#'
 #' @export
 #'
 #' @examples
-blooming_summary <- function(data, anomaly_point, relative_abundance,  range_percentage){
-
-  relative_abundance_anomaly <- data %>%
-    dplyr::mutate(row_index := row_number()) %>%
-    dplyr::filter(row_index == anomaly_point) %>%
-    select({{relative_abundance}}) %>%
-    as.numeric()
-
-  perc <-   relative_abundance_anomaly*range_percentage
-
-  data_blooming_maintained  <- data %>%
-    dplyr::mutate(row_index := row_number()) %>%
-    dplyr::filter(row_index >= anomaly_point) %>%
-    dplyr::mutate(mantaining_bloom = case_when(between({{relative_abundance}}, relative_abundance_anomaly-perc, relative_abundance_anomaly+perc) ~ 'TRUE',
-                                               .default  = 'FALSE')) %>%
-    dplyr::mutate(binomial_bloom = case_when(mantaining_bloom == 'TRUE' ~ 1,
-                                             mantaining_bloom == 'FALSE' ~ 0)) %>%
-    dplyr::mutate(anormal_abundance_points = sum(binomial_bloom)) %>%
-    group_by(grp = with(rle(binomial_bloom), rep(seq_along(lengths), lengths))) %>% #asv_num,
-    mutate(consecutive_bloom = 1:n()) %>%
-    ungroup() %>%
-    dplyr::filter(grp == 1) %>%
-    select(-grp, -binomial_bloom, -mantaining_bloom, -row_index, -{{relative_abundance}}) %>%
-    slice_max(consecutive_bloom, n = 1) %>%
-    cbind(relative_abundance_anomaly)
-
-  return(data_blooming_maintained)
+#' abundance <- runif(16, 0, 2000)
+#' abundance[10] <- 20000
+#' z_vector <- get_anomalies(values = abundance)[[2]]
+#' blooming_summary(values = abundance, z_vector = z_vector)
+#' blooming_summary(values  = abundance, anomaly_point = 10)
+blooming_summary <- function(values,
+                             z_vector,
+                             cutoff = 1.96,
+                             anomaly_point = NULL,
+                             range_percentage = 10){
+  #test params are as expected.
+  if(is.numeric(values) == FALSE){
+    stop("Function stopped: values vector need to be numeric")
+  }
+  #select anomaly points from z_vector
+  if(is.null(anomaly_point)){
+    points_ <- which(z_vector > cutoff)
+    if(length(points_) == 0){
+      stop("Function stopped: there are no anomalies in the z vector")
+    }
+  } else {
+    points_ <- anomaly_point
+  }
+  #select the values of those points
+  anomaly_values <- values[points_]
+  #select the range of similar values accepted
+  perc <-   anomaly_values*(range_percentage/100)
+  #classify which ones are within this range
+  out <- data.frame(anomaly_value = NA, compatible_values = NA, bloom_duration = NA)
+  for(i in 1:length(points_)){
+    nexts <- values[(points_[i]+1):length(values)]
+    next_logic <- ifelse(nexts < (anomaly_values[i] + perc[i]) &
+                           nexts > (anomaly_values[i] - perc[i]), 1, 0)
+    out[i,1] <- anomaly_values[i]
+    out[i,2] <- sum(next_logic)
+    out[i,3] <- sum(next_logic[1:which(next_logic == 0)[1]])
+  }
+  return(out)
 }
