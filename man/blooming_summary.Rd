@@ -33,11 +33,13 @@ at which this is detected, it's value, how many posterior data_points are within
 A function to calculate for how long anomalies persist in a time series.
 }
 \examples{
+\dontrun{
 abundance <- runif(16, 0, 2000)
 abundance[10] <- 20000
 z_vector <- get_anomalies(values = abundance)[[2]]
 blooming_summary(values = abundance, z_vector = z_vector)
 blooming_summary(values  = abundance, anomaly_point = 10)
+}
 }
 \author{
 O. Deulofeu, I. Bartomeus

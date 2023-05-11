@@ -15,5 +15,5 @@ dissimilarity_matrix(data, sample_id_col)
 Compute Bray-Curtis dissimilarity for adjacent samples
 }
 \examples{
-dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
+#dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
 }

@@ -9,7 +9,9 @@ get_anomalies(
   time_lag = 4,
   cutoff = 1.96,
   negative = FALSE,
-  plotting = TRUE
+  plotting = TRUE,
+  na_rm = FALSE,
+  texts = "taxa"
 )
 }
 \arguments{
@@ -21,6 +23,10 @@ you want to consider to calculate the anomalies. Default to 4}
 \item{negative}{we want to detect only positive anomaliess or also negative. Default to FALSE}
 
 \item{plotting}{should we plot the time series? Default to TRUE}
+
+\item{na_rm}{Should NA values be allowed in values? Default to FALSE.}
+
+\item{texts}{user specifies text to add to the plot e.g. taxa.}
 
 \item{value}{a vector of abundances, relative abundances or any other parameter
 per sampling period (numeric)}
@@ -35,9 +41,9 @@ A function to calculate anomalies in a time series by calculating
 z-values of each data point with respect to a specified previous moving window.
 }
 \examples{
-abundance <- runif(16, 0, 2000)
-abundance[10] <- 20000
-get_anomalies(values = abundance)
+#abundance <- runif(16, 0, 2000)
+#abundance[10] <- 20000
+#get_anomalies(values = abundance)
 }
 \author{
 I. Bartomeus

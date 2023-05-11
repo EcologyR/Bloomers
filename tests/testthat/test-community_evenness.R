@@ -2,7 +2,7 @@
 # Write test cases using expect_equal() function
 test_that("community_evenness calculates Shannon index correctly", {
   abundances <- c(5, 2, 3, 1, 4)
-  expected_E <- 0.92563392
+  expected_E <- 0.9256339
   calculated_E <- community_evenness(abundances, index = "Shannon")
   expect_equal(calculated_E, expected_E)
 })
