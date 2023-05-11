@@ -21,6 +21,12 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/how_to_use_Bloomers.html">Bloomers work flow example</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
@@ -65,14 +71,43 @@
 
 
 <dt>rel_abund</dt>
-<dd><p>abundance column with relative abundances (0-1) for each asv from the data tibble</p></dd>
+<dd><p>abundance column with relative abundances (0-1) for each taxa from the data tibble</p></dd>
 
 
 <dt>total_abund</dt>
 <dd><p>column with total abundance data from abund_data tibble</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
+    <p>O. Deulofeu</p>
+    </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">taxa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"taxa1"</span>, <span class="st">"taxa2"</span>, <span class="st">"taxa3"</span>, <span class="st">"taxa4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">rel.abundances</span><span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">0</span>, <span class="fl">2000</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">0</span>, <span class="fl">2000</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">0</span>, <span class="fl">2000</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">0</span>, <span class="fl">2000</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>taxa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">taxa</span>, <span class="fl">16</span><span class="op">)</span>, <span class="va">rel.abundances</span>, event <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">abund_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>event <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, tot.abund <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">2000</span>, <span class="fl">5000</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">calculate_pseudoabund</span><span class="op">(</span><span class="va">data</span>, <span class="va">abund_data</span>, rel_abund <span class="op">=</span> <span class="va">rel.abundances</span>, total_abund <span class="op">=</span> <span class="va">tot.abund</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "event"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4310379 2640556 3540828 3312271 1866074  505320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 64 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    taxa  rel.abundances event tot.abund pseudoabundance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> taxa1          <span style="text-decoration: underline;">1</span>748.     1     <span style="text-decoration: underline;">2</span>465.        4<span style="text-decoration: underline;">310</span>379.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> taxa2          <span style="text-decoration: underline;">1</span>071.     1     <span style="text-decoration: underline;">2</span>465.        2<span style="text-decoration: underline;">640</span>556.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> taxa3          <span style="text-decoration: underline;">1</span>436.     1     <span style="text-decoration: underline;">2</span>465.        3<span style="text-decoration: underline;">540</span>828.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> taxa4          <span style="text-decoration: underline;">1</span>344.     1     <span style="text-decoration: underline;">2</span>465.        3<span style="text-decoration: underline;">312</span>271.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> taxa1           623.     2     <span style="text-decoration: underline;">2</span>994.        1<span style="text-decoration: underline;">866</span>074.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> taxa2           169.     2     <span style="text-decoration: underline;">2</span>994.         <span style="text-decoration: underline;">505</span>320.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> taxa3           272.     2     <span style="text-decoration: underline;">2</span>994.         <span style="text-decoration: underline;">814</span>416.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> taxa4          <span style="text-decoration: underline;">1</span>345.     2     <span style="text-decoration: underline;">2</span>994.        4<span style="text-decoration: underline;">025</span>666.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> taxa1           827.     3     <span style="text-decoration: underline;">4</span>047.        3<span style="text-decoration: underline;">344</span>783.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> taxa2           387.     3     <span style="text-decoration: underline;">4</span>047.        1<span style="text-decoration: underline;">566</span>128.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 54 more rows</span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

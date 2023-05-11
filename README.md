@@ -1,4 +1,10 @@
 
+TODO: - fix folde /data. Is needes? (now in buildignore) - Remove
+get_anomalies_season, Nacho_workflow_demo.R, data-raw and work_flow.R
+(now in buildignore) - tests are failing (both get and evenness) -
+examples fail, recheck - Datasets (if any) need documentation. - generar
+web con packege down -
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # Bloomers
@@ -33,7 +39,7 @@ The code to create this package is available
 
 ## The workflow of the bloomers package is summarized in the following graph
 
-![](inst/shceme_bloomers_pk.png)
+![](man/figures/shceme_bloomers_pk.png)
 
 ## Example
 
@@ -68,9 +74,9 @@ Put here a plot representing blooming species and how we do detect
 anomalies
 
 ``` r
-load("./data/bloomersdata.rda")
+#load("./data/bloomersdata.rda")
 
-plot(bloomersdata$pseudoabundance) #improve this example 
+#plot(bloomersdata$pseudoabundance) #improve this example 
 ```
 
 In that case, don’t forget to commit and push the resulting figure
@@ -88,4 +94,4 @@ If using this package, please cite it:
 
 Put your funding here from the Institut de Ciencies del Mar
 
-![](inst/ICM-logotip.jpg)
+![](man/figures/ICM-logotip.jpg)

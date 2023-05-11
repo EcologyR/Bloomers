@@ -1,6 +1,6 @@
 #' Compute Bray-Curtis dissimilarity for adjacent samples
 #'
-#' @param data a tibble with relative abundances for each ASV in long format
+#' @param data a tibble with relative abundances for each ASV/taxon in long format
 #' @param sample_id_col column that identifies uniquely each sample consecutively
 #'
 #' @return

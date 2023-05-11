@@ -47,7 +47,11 @@ The code to create this package is available [here](https://github.com/EcologyR/
 
 ##The workflow of the bloomers package is summarized in the following graph
 
+<<<<<<< HEAD
 #![](logos/scheme/shceme_bloomers_pk.png)
+=======
+![](man/figures/shceme_bloomers_pk.png)
+>>>>>>> d45c2bf8e1179ca55c7540fa428ba728a714a0a5
 
 ## Example
 
@@ -96,5 +100,9 @@ If using this package, please cite it:
 
 The development of this software has been funded by Fondo Europeo de Desarrollo Regional (FEDER) and Consejería de Transformación Económica, Industria, Conocimiento y Universidades of Junta de Andalucía (proyecto US-1381388 led by Francisco Rodríguez Sánchez, Universidad de Sevilla).
 
+<<<<<<< HEAD
 #![](https://github.com/EcologyR/Bloomers/blob/master/inst/ICM-logotip.jpg)
+=======
+![](man/figures/ICM-logotip.jpg)
+>>>>>>> d45c2bf8e1179ca55c7540fa428ba728a714a0a5
 

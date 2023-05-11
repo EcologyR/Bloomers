@@ -7,7 +7,7 @@
 dissimilarity_matrix(data, sample_id_col)
 }
 \arguments{
-\item{data}{a tibble with relative abundances for each ASV in long format}
+\item{data}{a tibble with relative abundances for each ASV/taxon in long format}
 
 \item{sample_id_col}{column that identifies uniquely each sample consecutively}
 }

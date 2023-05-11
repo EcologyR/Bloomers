@@ -9,7 +9,7 @@ calculate_rel_abund(data, group_cols)
 \arguments{
 \item{data}{a long tibble with reads as a column}
 
-\item{groups}{columns to group by that identify exclusively each sample}
+\item{group_cols}{columns to group by that identify exclusively each sample}
 }
 \description{
 Calculate relative abundances from a data with reads from each taxa.

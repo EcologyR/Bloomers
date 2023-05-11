@@ -25,4 +25,5 @@ Imports:
     dplyr,
     tibble,
     magrittr,
-    tidyverse
+    tidyverse,
+    vegan

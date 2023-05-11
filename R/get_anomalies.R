@@ -3,7 +3,7 @@
 #' @description A function to calculate anomalies in a time series by calculating
 #' z-values of each data point with respect to a specified previous moving window.
 #'
-#' @param value a vector of abundances, relative abundances or any other parameter
+#' @param values a vector of abundances, relative abundances or any other parameter
 #' per sampling period (numeric)
 #' @param time_lag a single value (number) specifying how many previous data points do
 #' you want to consider to calculate the anomalies. Default to 4

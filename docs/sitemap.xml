@@ -4,6 +4,12 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/articles/how_to_use_Bloomers.html</loc>
+  </url>
+  <url>
+    <loc>/articles/index.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -22,13 +28,19 @@
     <loc>/reference/Bloomers-package.html</loc>
   </url>
   <url>
+    <loc>/reference/blooming_summary.html</loc>
+  </url>
+  <url>
     <loc>/reference/calculate_pseudoabund.html</loc>
   </url>
   <url>
     <loc>/reference/calculate_rel_abund.html</loc>
   </url>
   <url>
-    <loc>/reference/exampledata.html</loc>
+    <loc>/reference/community_evenness.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dissimilarity_matrix.html</loc>
   </url>
   <url>
     <loc>/reference/get_anomalies.html</loc>
@@ -40,15 +52,6 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/make_scatterplot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/resta.html</loc>
-  </url>
-  <url>
-    <loc>/reference/suma.html</loc>
-  </url>
-  <url>
-    <loc>/reference/templateRpackage-package.html</loc>
+    <loc>/reference/prepare_example_data.html</loc>
   </url>
 </urlset>
