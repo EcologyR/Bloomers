@@ -15,6 +15,9 @@ get_anomalies(
 )
 }
 \arguments{
+\item{values}{a vector of abundances, relative abundances or any other parameter
+per sampling period (numeric)}
+
 \item{time_lag}{a single value (number) specifying how many previous data points do
 you want to consider to calculate the anomalies. Default to 4}
 
@@ -27,9 +30,6 @@ you want to consider to calculate the anomalies. Default to 4}
 \item{na_rm}{Should NA values be allowed in values? Default to FALSE.}
 
 \item{texts}{user specifies text to add to the plot e.g. taxa.}
-
-\item{value}{a vector of abundances, relative abundances or any other parameter
-per sampling period (numeric)}
 }
 \value{
 A list of two elements, "anomaly" (TRUE / FALSE) and "z" (a vector

@@ -22,8 +22,7 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 Imports: 
-    dplyr,
-    tibble,
-    magrittr,
     tidyverse,
+    dplyr,
+    magrittr,
     vegan

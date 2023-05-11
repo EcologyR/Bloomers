@@ -70,6 +70,10 @@
 <dd><p>a tibble with total abundance data</p></dd>
 
 
+<dt>by_</dt>
+<dd><p>columns used to merge dataframes (default is NULL)</p></dd>
+
+
 <dt>rel_abund</dt>
 <dd><p>abundance column with relative abundances (0-1) for each taxa from the data tibble</p></dd>
 
@@ -91,20 +95,20 @@
 <span class="r-in"><span><span class="va">abund_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>event <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, tot.abund <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">2000</span>, <span class="fl">5000</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">calculate_pseudoabund</span><span class="op">(</span><span class="va">data</span>, <span class="va">abund_data</span>, rel_abund <span class="op">=</span> <span class="va">rel.abundances</span>, total_abund <span class="op">=</span> <span class="va">tot.abund</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "event"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4310379 2640556 3540828 3312271 1866074  505320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1455649 4443265 1904862 4125628 9279001 1440831</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 64 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    taxa  rel.abundances event tot.abund pseudoabundance</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> taxa1          <span style="text-decoration: underline;">1</span>748.     1     <span style="text-decoration: underline;">2</span>465.        4<span style="text-decoration: underline;">310</span>379.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> taxa2          <span style="text-decoration: underline;">1</span>071.     1     <span style="text-decoration: underline;">2</span>465.        2<span style="text-decoration: underline;">640</span>556.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> taxa3          <span style="text-decoration: underline;">1</span>436.     1     <span style="text-decoration: underline;">2</span>465.        3<span style="text-decoration: underline;">540</span>828.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> taxa4          <span style="text-decoration: underline;">1</span>344.     1     <span style="text-decoration: underline;">2</span>465.        3<span style="text-decoration: underline;">312</span>271.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> taxa1           623.     2     <span style="text-decoration: underline;">2</span>994.        1<span style="text-decoration: underline;">866</span>074.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> taxa2           169.     2     <span style="text-decoration: underline;">2</span>994.         <span style="text-decoration: underline;">505</span>320.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> taxa3           272.     2     <span style="text-decoration: underline;">2</span>994.         <span style="text-decoration: underline;">814</span>416.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> taxa4          <span style="text-decoration: underline;">1</span>345.     2     <span style="text-decoration: underline;">2</span>994.        4<span style="text-decoration: underline;">025</span>666.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> taxa1           827.     3     <span style="text-decoration: underline;">4</span>047.        3<span style="text-decoration: underline;">344</span>783.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> taxa2           387.     3     <span style="text-decoration: underline;">4</span>047.        1<span style="text-decoration: underline;">566</span>128.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> taxa1           307.     1     <span style="text-decoration: underline;">4</span>737.        1<span style="text-decoration: underline;">455</span>649.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> taxa2           938.     1     <span style="text-decoration: underline;">4</span>737.        4<span style="text-decoration: underline;">443</span>265.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> taxa3           402.     1     <span style="text-decoration: underline;">4</span>737.        1<span style="text-decoration: underline;">904</span>862.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> taxa4           871.     1     <span style="text-decoration: underline;">4</span>737.        4<span style="text-decoration: underline;">125</span>628.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> taxa1          <span style="text-decoration: underline;">1</span>912.     2     <span style="text-decoration: underline;">4</span>854.        9<span style="text-decoration: underline;">279</span>001.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> taxa2           297.     2     <span style="text-decoration: underline;">4</span>854.        1<span style="text-decoration: underline;">440</span>831.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> taxa3           728.     2     <span style="text-decoration: underline;">4</span>854.        3<span style="text-decoration: underline;">531</span>412.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> taxa4          <span style="text-decoration: underline;">1</span>635.     2     <span style="text-decoration: underline;">4</span>854.        7<span style="text-decoration: underline;">933</span>797.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> taxa1          <span style="text-decoration: underline;">1</span>445.     3     <span style="text-decoration: underline;">2</span>427.        3<span style="text-decoration: underline;">506</span>310.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> taxa2          <span style="text-decoration: underline;">1</span>530.     3     <span style="text-decoration: underline;">2</span>427.        3<span style="text-decoration: underline;">712</span>938.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 54 more rows</span></span>
 </code></pre></div>
     </div>
