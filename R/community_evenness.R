@@ -26,7 +26,7 @@ community_evenness <- function(abundances, index = "Shannon") {
   if (index == "Shannon") {
     n <- sum(abundances)
     pi <- abundances / n
-    H <- -sum(pi * log(pi))
+    H <- -sum(pi * log(pi+0.00000001))
     H_max <- log(length(abundances))
     E <- H / H_max
   }
