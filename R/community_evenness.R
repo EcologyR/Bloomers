@@ -57,7 +57,7 @@ library(tidyr)
 bloomers_abund <- bloomersdata %>%
   pivot_wider(names_from = date_hour, values_from = pseudoabundance)
 
-c
+abund1 <- c(as.numeric(unlist(bloomers_abund[2])))
 
 community_evenness(abund1, index = "Shannon")
 community_evenness(abund1, index = "Simpson")
