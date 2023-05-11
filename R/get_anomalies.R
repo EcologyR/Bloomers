@@ -36,13 +36,13 @@ get_anomalies <- function(values = NULL,
   if(is.numeric(time_lag) == FALSE){
     stop("Function stopped: time_lag needs to be numeric")
   }
-  if(length(time_lag) == 1 == FALSE){
+  if(length(time_lag) != 1){
     stop("Function stopped: time_lag needs to be length one")
   }
   if(is.numeric(cutoff) == FALSE){
     stop("Function stopped: cutoff needs to be numeric")
   }
-  if(length(cutoff) == 1 == FALSE){
+  if(length(cutoff) != 1){
     stop("Function stopped: cutoff needs to be length one")
   }
   if(is.logical(plotting) == FALSE){
