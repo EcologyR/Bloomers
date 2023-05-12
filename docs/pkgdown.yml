@@ -3,13 +3,5 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   how_to_use_Bloomers: how_to_use_Bloomers.html
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-last_built: 2023-05-11T15:53Z
-=======
-last_built: 2023-05-11T17:55Z
->>>>>>> d45c2bf8e1179ca55c7540fa428ba728a714a0a5
-=======
-last_built: 2023-05-11T18:11Z
->>>>>>> Stashed changes
+last_built: 2023-05-12T08:07Z
 
