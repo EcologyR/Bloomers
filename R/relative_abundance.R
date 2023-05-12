@@ -2,6 +2,7 @@
 #'
 #' @name relative_abundances
 #' @docType data
+#' @format "relatabun"
 #' @author O. Deulofeu-Capo, I. Bartomeus, I. Mendoza \email{ona@@roxygen.org}
 #' @references \url{relative_abundances.com}
 #' @keywords marine microbes, bloom

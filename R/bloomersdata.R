@@ -1,6 +1,7 @@
 #' an example dataset of bloomers with 9 ASVs or taxa
 #'
 #' @name bloomersdata
+#' @format "bloomersdata"
 #' @docType data
 #' @author O. Deulofeu-Capo, I. Bartomeus, I. Mendoza \email{ona@@roxygen.org}
 #' @references \url{relative_abundances.com}
