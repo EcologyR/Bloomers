@@ -20,6 +20,8 @@ library(devtools)
 library(tidyverse)
 library(vegan)
 library(Bloomers)
+
+source('../../R/community_evenness.R')
 ```
 
 # Get example data
@@ -49,11 +51,12 @@ head(asv_tab_pseudoabund)
 We calculate different diversity parameters to check if the blooming events detected have an effect on the community structure
 ## Community eveness
 ```{r}
-# community_eveness <- asv_tab_pseudoabund %>%
-#   as_tibble() %>%
-#   group_by(sample_id) %>%
-#   dplyr::summarise(community_eveness_result = community_evenness(abundances = pseudoabundance, index = "Shannon"))
-# head(community_eveness)
+community_eveness <- asv_tab_pseudoabund %>%
+  select(sample_id, reads, asv_num) %>%
+  as_tibble() %>%
+  group_by(sample_id) %>%
+  dplyr::summarize(community_eveness_result = community_evenness(abundances = reads, index = "Eveness"))
+head(community_eveness)
 ```
 ## Community Bray-Curtis dissimilarity
 ```{r}
@@ -68,19 +71,24 @@ z <- asv_tab_pseudoabund %>%
   group_by(asv_num) %>%
   dplyr::summarize(anomalies_ab = get_anomalies(values = pseudoabundance, plotting = TRUE)[[1]],
                    anomalies_ra = get_anomalies(values = relative_abundance, plotting = TRUE)[[1]])
-z #TODO AÑADIR EVENESS Y BC
+z
 ```
 ## For community eveness and bray curtis dissimilarity
 ```{r}
-# bray_curtis_results %>%
-#   cbind(community_eveness) %>%
-#   #group_by(sample_id) %>%
-#   dplyr::summarize(anomalies_ab = get_anomalies(values = bray_curtis_result, plotting = TRUE)[[1]],
-#                    anomalies_ra = get_anomalies(values = community_eveness_result, plotting = TRUE)[[1]])
+z_diversity <- bray_curtis_results %>%
+  cbind(community_eveness) %>%
+  #ungroup() %>%
+  #group_by(sample_id) %>%
+  dplyr::summarize(anomalies_bray = get_anomalies(values = bray_curtis_result, plotting = FALSE)[c(1,2)],
+                   anomalies_eveness = get_anomalies(values = community_eveness_result, plotting = FALSE)[[1]])
+
+z_diversity %>%
+  str()
 ```
 # Summarize blooming events
-```{r}
 
+```{r}
+blooming_summary(asv_tab_pseudoabund, z_vector = )
 ```
 
 
