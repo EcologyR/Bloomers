@@ -1,7 +1,7 @@
 #' an example dataset of bloomers with 9 ASVs or taxa
 #'
 #' @name bloomersdata
-#' @format "bloomersdata"
+#' @format A data frame with 3 variables
 #' @docType data
 #' @author O. Deulofeu-Capo, I. Bartomeus, I. Mendoza \email{ona@@roxygen.org}
 #' @references \url{relative_abundances.com}
@@ -17,4 +17,3 @@
 #' @docType data
 #' @keywords datasets
 #' @usage data(bloomersdata)
-#' @format A data frame with 3 variables
