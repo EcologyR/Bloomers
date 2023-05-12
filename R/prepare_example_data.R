@@ -6,7 +6,6 @@
 #'
 #' @return
 #' @export
-#' @import tidyverse
 #'
 #' @examples
 prepare_example_data <- function (abund_data = "./data-raw/example_abund_data.txt",

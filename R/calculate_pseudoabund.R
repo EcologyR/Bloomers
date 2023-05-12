@@ -9,7 +9,6 @@
 #'
 #' @return
 #' @export
-#' @import tidyverse
 #' @import magrittr
 #' @import dplyr
 #'
@@ -24,13 +23,13 @@
 
 calculate_pseudoabund <- function(data, abund_data, by_ = NULL, #sample_id1 = "col1", sample_id2 = "col2",
                                   rel_abund, total_abund){
-  if("package:plyr" %in% search()) detach("package:plyr", unload=TRUE)
+
   pseudoabund_df <- data %>%
-    ungroup %>%
+    dplyr::ungroup %>%
     dplyr::left_join(y = abund_data, by = by_, multiple = 'all') %>% #c(!!sample_id1 = !!sample_id2)
     rowwise() %>%
-    mutate(pseudoabundance = ({{rel_abund}}*{{total_abund}})) %>%
-    as_tibble()
+    dplyr::mutate(pseudoabundance = ({{rel_abund}}*{{total_abund}})) %>%
+    dplyr::as_tibble()
   print(head(pseudoabund_df$pseudoabundance))
   return(pseudoabund_df)
 }
