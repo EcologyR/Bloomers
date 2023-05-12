@@ -19,14 +19,13 @@ library(devtools)
 #install_github(repo = "EcologyR/Bloomers")
 library(tidyverse)
 library(vegan)
-library(Bloomers)
+#library(Bloomers)
 ```
 
 # Get example data
 ```{r}
-setwd('../../')
-data <- prepare_example_data()
-head(data)
+load("./data/bloomersdata.rda")
+head(bloomersdata)
 ```
 
 # Preprocessing data 
