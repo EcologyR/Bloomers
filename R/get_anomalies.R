@@ -20,9 +20,9 @@
 #' @export
 #'
 #' @examples
-#' #abundance <- runif(16, 0, 2000)
-#' #abundance[10] <- 20000
-#' #get_anomalies(values = abundance)
+#' abundance <- runif(16, 0, 2000)
+#' abundance[10] <- 20000
+#' get_anomalies(values = abundance)
 #' @author I. Bartomeus
 #'
 get_anomalies <- function(values = NULL,
@@ -77,18 +77,24 @@ get_anomalies <- function(values = NULL,
   }
   #catch if there is an anomaly or not
   if(negative == FALSE){
-    if(any(z > cutoff, na.rm = TRUE)){
-      anomaly <- TRUE
-    } else {
-      anomaly <- FALSE
-    }
-  } else{
-    if(any(abs(z) > cutoff, na.rm = TRUE)){
+
+    if (any(z > cutoff, na.rm = TRUE)){
+      z.signif <- which(z > cutoff)
       anomaly <- TRUE
     } else {
       anomaly <- FALSE
     }
   }
+
+  if (isTRUE(negative)) {
+    if(any(abs(z) > cutoff, na.rm = TRUE)){
+      z.signif <- which(abs(z) > cutoff)
+      anomaly <- TRUE
+    } else {
+      anomaly <- FALSE
+    }
+  }
+
   if (plotting) {
     if(negative == FALSE){
       color_ <- ifelse(abs(z) > cutoff, "#b41e31", "black")
@@ -120,6 +126,6 @@ get_anomalies <- function(values = NULL,
         lines(values ~ time)
         }
   }
-  return(list(anomaly = anomaly, z = z))
+  return(list(anomaly = anomaly, anomaly.position = z.signif, z = z))
 }
 
