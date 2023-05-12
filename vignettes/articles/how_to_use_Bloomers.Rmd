@@ -26,9 +26,8 @@ source('../../R/community_evenness.R')
 
 # Get example data
 ```{r}
-setwd('../../')
-data <- prepare_example_data()
-head(data)
+load("./data/bloomersdata.rda")
+head(bloomersdata)
 ```
 
 # Preprocessing data 

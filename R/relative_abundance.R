@@ -2,17 +2,17 @@
 #'
 #' @name relative_abundances
 #' @docType data
+#' @format A data frame with 3 variables
 #' @author O. Deulofeu-Capo, I. Bartomeus, I. Mendoza \email{ona@@roxygen.org}
-#' @references \url{relative_abundances.com}
 #' @keywords marine microbes, bloom
 #' \itemize{
 #'   \item taxa: ASV
 #'   \item abund: number of reads of each taxa/ASV
 #'   \item sample_id: unique identification event of sampling'
 #'   }
-#'   "relative_abundances"
+#'   "relatabun"
 #'
 #' @docType data
 #' @keywords datasets
-#' @usage data(relative_abundances)
-#' @format A data frame with 3 variables
+#' @usage data(relatabun)
+

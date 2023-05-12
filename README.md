@@ -21,11 +21,8 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 <!-- [![CodeFactor](https://www.codefactor.io/repository/github/ecologyr/templaterpackage/badge)](https://www.codefactor.io/repository/github/ecologyr/templaterpackage) -->
 <!-- badges: end -->
 
-The main objective of “Bloomers” package is to detect sharp changes in
-abundances for individual taxa in microbial communities. A bloomer is
-defined as a taxa that has a fast and significant increase in a
-community compared to the rest of species. Examples are given for
-bacteria found in the Mediterranean season.
+The main objective of Bloomers package is to detect sharp changes in
+abundances for individual taxa in microbial communities.
 
 ## Installation
 
@@ -37,7 +34,8 @@ devtools::install_github("EcologyR/Bloomers")
 The code to create this package is available
 [here](https://github.com/EcologyR/Bloomers).
 
-## The workflow of the bloomers package is summarized in the following graph
+\##The workflow of the bloomers package is summarized in the following
+graph
 
 ![](man/figures/shceme_bloomers_pk.png)
 
@@ -46,7 +44,7 @@ The code to create this package is available
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-# library(Bloomers)
+# library(templateRpackage)
 ## basic example code
 ```
 
@@ -74,9 +72,13 @@ Put here a plot representing blooming species and how we do detect
 anomalies
 
 ``` r
-#load("./data/bloomersdata.rda")
 
 #plot(bloomersdata$pseudoabundance) #improve this example 
+#load("./data/bloomersdata.rda")
+```
+
+``` r
+plot(pressure)
 ```
 
 In that case, don’t forget to commit and push the resulting figure
@@ -92,6 +94,9 @@ If using this package, please cite it:
 
 ## Funding
 
-Put your funding here from the Institut de Ciencies del Mar
+The development of this software has been funded by Fondo Europeo de
+Desarrollo Regional (FEDER) and Consejería de Transformación Económica,
+Industria, Conocimiento y Universidades of Junta de Andalucía (proyecto
+US-1381388 led by Francisco Rodríguez Sánchez, Universidad de Sevilla).
 
 ![](man/figures/ICM-logotip.jpg)
