@@ -1,6 +1,6 @@
 Package: Bloomers
 Title: Identify Potential Bloomers In Microbial Communities
-Version: 0.0.0.1
+Version: 0.0.0.9000
 Authors@R: 
   c(
     person("Ona", "Deulofeu-Capo", , "ona.deulofeu@gmail.com", role = c("aut", "cre"),
