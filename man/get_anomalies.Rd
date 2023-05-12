@@ -41,9 +41,9 @@ A function to calculate anomalies in a time series by calculating
 z-values of each data point with respect to a specified previous moving window.
 }
 \examples{
-#abundance <- runif(16, 0, 2000)
-#abundance[10] <- 20000
-#get_anomalies(values = abundance)
+abundance <- runif(16, 0, 2000)
+abundance[10] <- 20000
+get_anomalies(values = abundance)
 }
 \author{
 I. Bartomeus
