@@ -42,12 +42,19 @@ community_evenness <- function(abundances, index = "Shannon") {
   else if (index == "Pielou"){
 
     E <- -sum((abundances/sum(abundances))*log(abundances/sum(abundances)))
+    E
+  }
+  else if (index == 'Eveness'){
+    shannon <- vegan::diversity(abundances)
+    specnumber<- vegan::specnumber(abundances)
+    eveness <- shannon/log(specnumber)
+    eveness
   }
 
-   else {
-    stop("Invalid index option. Please choose among 'Shannon', 'Simpson' or 'Pielou'. Be aware of capitalization")
+  else {
+    stop("Invalid index option. Please choose among 'Shannon', 'Simpson' or 'Pielou', or 'Eveness'. Be aware of capitalization")
   }
-  E
+
 }
 
 
