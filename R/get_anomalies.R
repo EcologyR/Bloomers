@@ -8,7 +8,7 @@
 #' @param time_lag a single value (number) specifying how many previous data points do
 #' you want to consider to calculate the anomalies. Default to 4
 #' @param cutoff Z-value threshold to detect an anomaly. default at 1.96, which is at percentile 95%
-#' @param negative we want to detect only positive anomaliess or also negative. Default to FALSE
+#' @param negative we want to detect only positive anomalies or also negative. Default to FALSE
 #' @param plotting should we plot the time series? Default to TRUE
 #' @param na_rm Should NA values be allowed in values? Default to FALSE.
 #' @param texts user specifies text to add to the plot e.g. taxa.
@@ -76,6 +76,9 @@ get_anomalies <- function(values = NULL,
     z[i] <- round((values[i] - xt[i]) / sdt[i],3)
   }
   #catch if there is an anomaly or not
+  anomaly <- FALSE
+  z.signif <- NULL
+
   if(negative == FALSE){
 
     if (any(z > cutoff, na.rm = TRUE)){
