@@ -24,11 +24,11 @@
 calculate_pseudoabund <- function(data, abund_data, by_ = NULL, #sample_id1 = "col1", sample_id2 = "col2",
                                   rel_abund, total_abund){
 
-  pseudoabund_df <- data %>%
-    dplyr::ungroup %>%
+  pseudoabund_df <- data |>
+    dplyr::ungroup() |>
     dplyr::left_join(y = abund_data, by = by_, multiple = 'all') %>% #c(!!sample_id1 = !!sample_id2)
-    rowwise() %>%
-    dplyr::mutate(pseudoabundance = ({{rel_abund}}*{{total_abund}})) %>%
+    rowwise() |>
+    dplyr::mutate(pseudoabundance = ({{rel_abund}}*{{total_abund}})) |>
     dplyr::as_tibble()
   print(head(pseudoabund_df$pseudoabundance))
   return(pseudoabund_df)
