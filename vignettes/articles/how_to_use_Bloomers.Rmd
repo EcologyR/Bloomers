@@ -22,18 +22,26 @@ library(vegan)
 library(Bloomers)
 
 source('../../R/community_evenness.R')
+source('../../R/get_anomalies.R') #la poso així perquè l'he actualizat i com que no he compilat el paquet potser no funciona actualitzada 
+source('../../R/calculate_relative_abundance.R')
+source('../../R/blooming_event_summary.R')
+source('../../R/find_asv_with_anomalies.R')
+source('../../R/compute_bray_curtis_dissimilariy.R')
 ```
 
 # Get example data
 ```{r}
-load("./data/bloomersdata.rda")
-head(bloomersdata)
+#load("../../data/bloomersdata.rda")
+setwd('../../')
+data <- prepare_example_data()
+str(data)
+#head(bloomersdata)
 ```
 
 # Preprocessing data 
 ## Calculate relative abundances
 ```{r}
-asv_tab_l_rel_abund <- data$asv_tab_l %>%
+asv_tab_l_rel_abund <- data$asv_tab_l |>
   calculate_rel_abund(group_cols = sample_id)
 head(asv_tab_l_rel_abund)
 ```
@@ -54,40 +62,64 @@ community_eveness <- asv_tab_pseudoabund %>%
   select(sample_id, reads, asv_num) %>%
   as_tibble() %>%
   group_by(sample_id) %>%
-  dplyr::summarize(community_eveness_result = community_evenness(abundances = reads, index = "Eveness"))
+  dplyr::summarize(community_eveness_result = community_evenness(abundances = reads, index = "Pielou"))
 head(community_eveness)
 ```
 ## Community Bray-Curtis dissimilarity
 ```{r}
-bray_curtis_results <- dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
-head(bray_curtis_results)
+bray_curtis <- dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id, values_cols_prefix = 'HFW')
+head(bray_curtis)
 ```
 # Discover anomalies
-## For relative abundances and pseudoabundances
+## For each ASVs based on relative abundances and pseudoabundances
 ```{r}
 z <- asv_tab_pseudoabund %>%
-  as_tibble() %>%
-  group_by(asv_num) %>%
-  dplyr::summarize(anomalies_ab = get_anomalies(values = pseudoabundance, plotting = TRUE)[[1]],
-                   anomalies_ra = get_anomalies(values = relative_abundance, plotting = TRUE)[[1]])
+  as_tibble() |>
+  group_by(asv_num) |>
+  dplyr::summarize(anomalies_ab = get_anomalies(values = pseudoabundance, plotting = FALSE)[c(1,2)],
+                   anomalies_ra = get_anomalies(values = relative_abundance, plotting = FALSE)[c(1,2)])
 z
 ```
 ## For community eveness and bray curtis dissimilarity
 ```{r}
-z_diversity <- bray_curtis_results %>%
-  cbind(community_eveness) %>%
-  #ungroup() %>%
-  #group_by(sample_id) %>%
-  dplyr::summarize(anomalies_bray = get_anomalies(values = bray_curtis_result, plotting = FALSE)[c(1,2)],
-                   anomalies_eveness = get_anomalies(values = community_eveness_result, plotting = FALSE)[[1]])
-
-z_diversity %>%
-  str()
+# z_diversity <- bray_curtis |>
+#   dplyr::right_join(community_eveness, by = join_by('sample_id')) |> 
+#   #ungroup() %>%
+#   #group_by(sample_id) %>%
+#   dplyr::reframe(anomalies_bray = get_anomalies(values = bray_curtis_result, plotting = FALSE)[c(1,2,3)],
+#                    anomalies_eveness = get_anomalies(values = community_eveness_result, plotting = FALSE)[c(1,2,3)])
+# 
+# 
+# z_diversity %>%
+#   str()
 ```
 # Summarize blooming events
 
 ```{r}
-blooming_summary(asv_tab_pseudoabund, z_vector = )
+# z$asv_num
+# #blooming_event_summary()
+# asv_tab_pseudoabund |>
+#   dplyr::filter(asv_num == 'asv1') |>
+#   dplyr::slect()
+# blooming_summary(, z_vector = )
+```
+# Filter the ASV_tab by only those ASVs that have an anomaly at some point of the dataset
+```{r filter for ASVs that have anomalies}
+asv_anom <- find_asv_with_anomalies(anomalies_result = z, anomaly_in1 = anomalies_ab, anomaly_in2 = anomalies_ra, logic1 = TRUE, logic2 = TRUE, asv_col = asv_num)
+
+asv_tab_pseudoabund_filt <- asv_tab_pseudoabund |>
+  pivot_longer(cols = c(pseudoabundance, relative_abundance), values_to = 'abundance_value', names_to = 'abundance_type') |>
+  filter(asv_num %in% asv_anom)
+
 ```
 
+## Now, we plot those ASVs that have anomalies detected
+```{r plotting anomal ASVs}
+asv_tab_pseudoabund_filt |> 
+  ggplot(aes(sample_id, abundance_value))+
+  geom_point()+
+  facet_grid(abundance_type ~ asv_num, scales = 'free')+
+  theme_bw()
+
+```
 

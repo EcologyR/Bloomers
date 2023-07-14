@@ -2,13 +2,14 @@
 #'
 #' @param data a tibble with relative abundances for each ASV/taxon in long format
 #' @param sample_id_col column that identifies uniquely each sample consecutively
+#' @param values_col_prefix a prefix that is the same for all samples being studied
 #'
 #' @return
 #' @export
 #'
 #' @examples
 #' #dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
-dissimilarity_matrix <- function(data, sample_id_col) {
+dissimilarity_matrix <- function(data, sample_id_col, values_cols_prefix) {
 
   # Extract rownames to mantain them at the output table
   sample_id_unique <- data %>%
@@ -35,7 +36,7 @@ dissimilarity_matrix <- function(data, sample_id_col) {
     pivot_wider(id_cols = {{sample_id_col}},  names_from = asv_num, values_from = relative_abundance) %>%
     group_by({{sample_id_col}}) %>%
     dplyr::arrange(.by_group = TRUE) %>%
-    column_to_rownames('sample_id') %>%
+    tibble::column_to_rownames('sample_id') %>%
     vegan::vegdist(method = 'bray', upper = T) %>%
     as.matrix() %>%
     as_data_frame() %>%
@@ -43,10 +44,10 @@ dissimilarity_matrix <- function(data, sample_id_col) {
     dplyr::mutate(row_index := row_number()) %>%
     rowid_to_column() %>%
     as_tibble() %>%
-    pivot_longer(cols = starts_with('HFW'), values_to = 'bray_curtis_result', names_to = 'samples') %>%
+    pivot_longer(cols = starts_with({{values_cols_prefix}}), values_to = 'bray_curtis_result', names_to = 'samples') %>%
     left_join(samples_index, by = c('samples' = 'sample_id')) %>%
     dplyr::filter(row_index == (row_index_2-1)) %>%
-    select(samples, row_index_2, bray_curtis_result) %>%
+    dplyr::select(samples, row_index_2, bray_curtis_result) %>%
     add_row(.before = 1)
 
   # # Chech that diagonal elements to zero (i.e., each sample is identical to itself)
