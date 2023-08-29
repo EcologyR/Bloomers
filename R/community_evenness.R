@@ -41,6 +41,9 @@ community_evenness <- function(abundances = NULL,
     out <- simpson
   }
 
+  ##to obtain 7 significant digits and not 2.
+  old <- options(pillar.sigfig = 7)
+
   if (index == "pielou"){
     specnumber <- vegan::specnumber(abundances)
     pielou <- shannon/log(specnumber)
