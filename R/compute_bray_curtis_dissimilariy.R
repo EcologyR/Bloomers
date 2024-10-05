@@ -6,6 +6,7 @@
 #'
 #' @return
 #' @export
+#' Important: tibbles must be arranged before starting the function. 
 #'
 #' @examples
 #' #dissimilarity_matrix(data = asv_tab_l_rel_abund, sample_id_col = sample_id)
@@ -14,7 +15,7 @@ dissimilarity_matrix <- function(data, sample_id_col, values_cols_prefix) {
   # Extract rownames to mantain them at the output table
   sample_id_unique <- data %>%
     group_by({{sample_id_col}}) %>% ##sample id that identifies uniquely each sample
-    dplyr::arrange(.by_group = TRUE)  %>% ## reorder so that it is ordered equally
+    #dplyr::arrange(.by_group = TRUE)  %>% ## reorder so that it is ordered equally
     dplyr::distinct({{sample_id_col}})
 
   # Index samples to filter for only consecutive comparisons
@@ -23,7 +24,7 @@ dissimilarity_matrix <- function(data, sample_id_col, values_cols_prefix) {
 
   samples_index <- data %>%
     dplyr::group_by({{sample_id_col}}) %>%
-    dplyr::arrange(.by_group = TRUE) %>%
+    #dplyr::arrange(.by_group = TRUE) %>%
     dplyr::select({{sample_id_col}}) %>%
     dplyr::distinct({{sample_id_col}}) %>%
     as_tibble() %>%
@@ -35,7 +36,7 @@ dissimilarity_matrix <- function(data, sample_id_col, values_cols_prefix) {
   dissim_mat <- data %>%
     pivot_wider(id_cols = {{sample_id_col}},  names_from = asv_num, values_from = relative_abundance) %>%
     group_by({{sample_id_col}}) %>%
-    dplyr::arrange(.by_group = TRUE) %>%
+    #dplyr::arrange(.by_group = TRUE) %>%
     tibble::column_to_rownames('sample_id') %>%
     vegan::vegdist(method = 'bray', upper = T) %>%
     as.matrix() %>%
