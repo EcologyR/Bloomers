@@ -4,7 +4,7 @@ output: github_document
 
 TODO:
 - fix folde /data. Is needes? (now in buildignore)
-- Remove get_anomalies_season, Nacho_workflow_demo.R, data-raw
+- Remove Nacho_workflow_demo.R, data-raw
  and work_flow.R (now in buildignore)
 - tests are failing (both get and evenness)
 - examples fail, recheck
