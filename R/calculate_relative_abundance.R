@@ -11,6 +11,10 @@
 #'
 #'
 calculate_rel_abund <- function(data, group_cols){
+ ##check col sums = 1
+  if (is.na(data$reads)) {
+    warning("There are NA values in the 'reads' column. Please check your dataset, it should not contain NAs.")
+  }
   ##check col sums = 1
   new_data <- data |>
     group_by({{group_cols}}) |>

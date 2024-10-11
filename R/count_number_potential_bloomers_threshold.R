@@ -1,4 +1,4 @@
-#' Count number of potential bloomers at different relative abunance () threshold
+#' Count number of potential bloomers at different relative abundances threshold
 #'
 #' @param threshold relative abundance at which you would like to set the threshold to consider a blooming event
 #' @param fraction size fraction at which you are working on
