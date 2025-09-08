@@ -12,6 +12,7 @@
 #' @param plotting should we plot the time series? Default to TRUE
 #' @param na_rm Should NA values be allowed in values? Default to FALSE.
 #' @param texts user specifies text to add to the plot e.g. taxa.
+#' @param preabund_threshold Optional filter: an anomaly is only considered valid if the value immediately preceding it is smaller than this threshold. If NULL (default), no filtering is applied
 #'
 #' @return A list of two elements, "anomaly" (TRUE / FALSE) and "z" (a vector
 #' of z-scores, one per time_point. Note that the first time points are NA, as those have
@@ -31,6 +32,7 @@ get_anomalies <- function(values = NULL,
                           negative = FALSE,
                           plotting = TRUE,
                           na_rm = FALSE,
+                          preabund_threshold = NULL,
                           texts = "taxa") {
   #test params are as expected.
   if(is.numeric(values) == FALSE){
@@ -64,6 +66,10 @@ get_anomalies <- function(values = NULL,
   if(length(values) < (length(cutoff)*2)){
     stop("Function stopped: Time series need to be at least twice the length of the cutoff")
   }
+  if(is.numeric(preabund_threshold) == FALSE){
+    stop("Function stopped: preabund_threshold need to be numeric")
+  }
+
   #calculate for each element, the mean and sd values for the previous time lag
   xt <- rep(NA, length(values))
   sdt <- rep(NA, length(values))
@@ -96,6 +102,18 @@ get_anomalies <- function(values = NULL,
     } else {
       anomaly <- FALSE
     }
+  }
+
+  # ---- filter with preabund_threshold if provided ----
+  if (!is.null(preabund_threshold) && anomaly) {
+    keep_idx <- c()
+    for (idx in z.signif) {
+      if (idx > 1 && values[idx - 1] < preabund_threshold) {
+        keep_idx <- c(keep_idx, idx)
+      }
+    }
+    z.signif <- keep_idx
+    anomaly <- length(z.signif) > 0
   }
 
   if (plotting) {
